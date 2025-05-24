@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Contact Header -->
-    <section class="bg-bone py-16 px-6">
+    <section class="bg-bone py-8 px-6">
         <div class="max-w-screen-xl mx-auto text-center">
             <h1 class="text-4xl font-playfair font-bold text-gray-800 mb-4">Contact Us</h1>
             <p class="text-lg text-gray-700 max-w-2xl mx-auto">Have any questions? We'd love to hear from you.</p>
@@ -70,8 +70,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
                                 <div>
-                                    <h3 class="font-medium text-gray-800">Address</h3>
-                                    <p class="text-gray-600">Your University Address</p>
+                                    <h3 class="font-medium text-gray-800">Lhokseumawe</h3>
+                                    <p class="text-gray-600">Bukitrata</p>
                                 </div>
                             </div>
 
@@ -81,7 +81,7 @@
                                 </svg>
                                 <div>
                                     <h3 class="font-medium text-gray-800">Email</h3>
-                                    <p class="text-gray-600">contact@example.com</p>
+                                    <p class="text-gray-600">trkj.pnl@gmail.com</p>
                                 </div>
                             </div>
 
@@ -91,7 +91,7 @@
                                 </svg>
                                 <div>
                                     <h3 class="font-medium text-gray-800">Phone</h3>
-                                    <p class="text-gray-600">+1234567890</p>
+                                    <p class="text-gray-600">+12(200)</p>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                         <h2 class="text-2xl font-playfair font-bold text-gray-800 mb-4">Location</h2>
                         <div class="aspect-video rounded-lg overflow-hidden">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.4826443219645!2d106.82797731477016!3d-6.5859417952281295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c89505b4c37d%3A0x307fc4a38e65fa2b!2sUniversitas%20Pakuan!5e0!3m2!1sid!2sid!4v1679999999999!5m2!1sid!2sid"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.897237407334!2d97.15330922569129!3d5.120258611532006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3047833e1943e83d%3A0xf2376bb0a10f266!2sGedung%20Teknologi%20Informasi%20dan%20Komputer!5e0!3m2!1sid!2sid!4v1748091966496!5m2!1sid!2sid" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0;" 

@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Gallery Header -->
-    <section class="bg-bone py-16 px-6">
+    <section class="bg-bone py-8 px-6">
         <div class="max-w-screen-xl mx-auto text-center">
             <h1 class="text-4xl font-playfair font-bold text-gray-800 mb-4">Photo Gallery</h1>
             <p class="text-lg text-gray-700 max-w-2xl mx-auto">Explore our memories and experiences through these captured moments.</p>

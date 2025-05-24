@@ -23,7 +23,7 @@
     </style>
 
     <!-- Structure Header -->
-    <section class="bg-bone py-10 sm:py-16 px-4 sm:px-6">
+    <section class="bg-bone py-10 sm:py-8 px-4 sm:px-6">
         <div class="max-w-screen-xl mx-auto text-center">
             <h1 class="text-3xl sm:text-4xl font-playfair font-bold text-gray-800 mb-3 sm:mb-4">Class Structure</h1>
             <p class="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">Meet our class organization and members.</p>
