@@ -83,11 +83,15 @@
                 </div>
                 <div class="grid grid-cols-3 gap-4">
                     @foreach($members as $member)
-                        <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-md">
-                            <img src="{{ $member->profile_image ? asset('storage/' . $member->profile_image) : asset('images/default-avatar.png') }}" alt="{{ $member->full_name }}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-primary/20">
-                            <h3 class="font-medium text-neutral-800">{{ $member->full_name }}</h3>
-                            <p class="text-sm text-neutral-600 capitalize">{{ $member->position }}</p>
-                        </div>
+                        @if(in_array($member->position, ['komisaris', 'sekretaris', 'bendahara']))
+                            <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-md">
+                                <img src="{{ $member->profile_image ? asset('storage/' . $member->profile_image) : asset('images/default-avatar.png') }}" 
+                                     alt="{{ $member->full_name }}" 
+                                     class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-primary/20">
+                                <h3 class="font-medium text-neutral-800">{{ $member->full_name }}</h3>
+                                <p class="text-sm text-neutral-600 capitalize">{{ $member->position }}</p>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

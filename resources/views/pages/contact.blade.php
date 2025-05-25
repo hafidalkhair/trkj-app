@@ -53,8 +53,11 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="w-full bg-tan hover:bg-tan/90 text-white font-medium py-3 px-6 rounded-lg transition-colors">
-                            Send Message
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-[0.99] flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
                         </button>
                     </form>
                 </div>
