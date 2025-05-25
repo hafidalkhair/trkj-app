@@ -15,9 +15,16 @@ class ContactMessage extends Model
         'subject',
         'message',
         'is_read',
+        'is_featured',
     ];
 
     protected $casts = [
         'is_read' => 'boolean',
+        'is_featured' => 'boolean',
     ];
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
+    }
 }

@@ -4,26 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Member;
+use App\Models\ContactMessage;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     public function index(): View
     {
-        $latestPhotos = Category::with(['photos' => function ($query) {
-            $query->latest()->take(6);
-        }])->take(3)->get();
+        $latestPhotos = Category::with('photos')->latest()->take(3)->get();
+        $members = Member::orderBy('display_order')->take(6)->get();
+        $testimonials = ContactMessage::featured()->latest()->take(3)->get();
 
-        $members = Member::orderBy('display_order')
-            ->where('position', 'komisaris')
-            ->orWhere('position', 'bendahara')
-            ->orWhere('position', 'sekretaris')
-            ->take(3)
-            ->get();
-
-        return view('pages.home', [
-            'latestPhotos' => $latestPhotos,
-            'members' => $members,
-        ]);
+        return view('pages.home', compact('latestPhotos', 'members', 'testimonials'));
     }
 }

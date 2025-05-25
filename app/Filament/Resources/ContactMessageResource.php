@@ -36,6 +36,10 @@ class ContactMessageResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('is_read')
                     ->required(),
+                Forms\Components\Toggle::make('is_featured')
+                    ->label('Show as Testimonial')
+                    ->helperText('If enabled, this message will be shown on the home page as a testimonial.')
+                    ->required(),
             ]);
     }
 
@@ -53,12 +57,18 @@ class ContactMessageResource extends Resource
                 Tables\Columns\IconColumn::make('is_read')
                     ->boolean()
                     ->sortable(),
+                Tables\Columns\IconColumn::make('is_featured')
+                    ->boolean()
+                    ->label('Testimonial')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_read'),
+                Tables\Filters\TernaryFilter::make('is_featured')
+                    ->label('Testimonials'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -67,6 +77,10 @@ class ContactMessageResource extends Resource
                     ->icon('heroicon-o-check')
                     ->action(fn (ContactMessage $record) => $record->update(['is_read' => true]))
                     ->visible(fn (ContactMessage $record) => !$record->is_read),
+                Tables\Actions\Action::make('toggle_featured')
+                    ->icon('heroicon-o-star')
+                    ->action(fn (ContactMessage $record) => $record->update(['is_featured' => !$record->is_featured]))
+                    ->label(fn (ContactMessage $record) => $record->is_featured ? 'Remove from Testimonials' : 'Add to Testimonials'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -74,6 +88,11 @@ class ContactMessageResource extends Resource
                     Tables\Actions\BulkAction::make('mark_as_read')
                         ->icon('heroicon-o-check')
                         ->action(fn ($records) => $records->each->update(['is_read' => true]))
+                        ->deselectRecordsAfterCompletion(),
+                    Tables\Actions\BulkAction::make('mark_as_featured')
+                        ->icon('heroicon-o-star')
+                        ->action(fn ($records) => $records->each->update(['is_featured' => true]))
+                        ->label('Add to Testimonials')
                         ->deselectRecordsAfterCompletion(),
                 ]),
             ])

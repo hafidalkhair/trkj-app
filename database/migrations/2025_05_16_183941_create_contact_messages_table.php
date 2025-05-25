@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('subject');
             $table->text('message');
             $table->boolean('is_read')->default(false);
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }
