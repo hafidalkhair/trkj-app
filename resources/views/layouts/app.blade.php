@@ -37,4 +37,7 @@
     @stack('scripts')
 </body>
 
-</html>
+</html>@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
