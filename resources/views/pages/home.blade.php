@@ -1,5 +1,4 @@
 <x-app-layout>
-  
     <section class="relative" x-data="{ currentSlide: 0 }" x-init="setInterval(() => { currentSlide = (currentSlide + 1) % $refs.slides.children.length }, 5000)">
         <div class="mx-auto">
             <!-- Image Slider with Overlay -->

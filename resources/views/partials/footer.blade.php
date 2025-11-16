@@ -1,9 +1,3 @@
-{{--
-  Footer disesuaikan dengan palet TEAL.
-  - Latar belakang diubah menjadi bg-white dark:bg-teal-900 agar kontras.
-  - Border atas diubah menjadi border-teal-200/50 dark:border-teal-800.
-  - Semua warna teks, link, dan hover disesuaikan dengan palet teal.
---}}
 <footer class="bg-white dark:bg-teal-900 mt-12 border-t border-teal-200/50 dark:border-teal-800">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
@@ -32,7 +26,7 @@
                     <h2 class="mb-6 text-sm font-semibold uppercase text-teal-900 dark:text-teal-100">Follow us</h2>
                     <ul class="text-teal-700 dark:text-teal-300">
                         <li class="mb-4">
-                            <a href="#" class="hover:text-teal-600 dark:hover:text-teal-200 transition-colors">Instagram</a>
+                            <a href="https://www.instagram.com/trkj_3copium/" class="hover:text-teal-600 dark:hover:text-teal-200 transition-colors">Instagram</a>
                         </li>
                         <li>
                             <a href="#" class="hover:text-teal-600 dark:hover:text-teal-200 transition-colors">Twitter</a>

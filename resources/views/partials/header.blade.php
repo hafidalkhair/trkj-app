@@ -1,9 +1,3 @@
-{{--
-  Navigasi disesuaikan dengan palet TEAL.
-  - Latar belakang 'glassmorphism' diubah menjadi bg-teal-50/80 dark:bg-teal-950/80.
-  - Border bawah diubah menjadi border-teal-200/50 dark:border-teal-800.
-  - Semua warna teks, link, dan hover disesuaikan dengan palet teal.
---}}
 <nav class="bg-teal-50/80 dark:bg-teal-950/80 backdrop-blur-sm fixed w-full z-50 top-0 left-0 border-b border-teal-200/50 dark:border-teal-800">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="{{ route('home') }}" class="flex items-center">
@@ -43,3 +37,25 @@
         </div>
     </div>
 </nav>
+
+{{--
+  SKRIP UNTUK HAMBURGER MENU:
+  Skrip ini sekarang ada di dalam file header.blade.php
+  agar file ini mandiri dan berfungsi.
+--}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const button = document.querySelector('[data-collapse-toggle="navbar-default"]');
+        const menu = document.getElementById('navbar-default');
+
+        if (button && menu) {
+            button.addEventListener('click', function() {
+                menu.classList.toggle('hidden');
+
+                // Memperbarui atribut aria-expanded untuk aksesibilitas
+                const isExpanded = !menu.classList.contains('hidden');
+                button.setAttribute('aria-expanded', isExpanded.toString());
+            });
+        }
+    });
+</script>

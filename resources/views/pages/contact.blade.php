@@ -1,9 +1,4 @@
 <x-app-layout>
-    {{--
-      Contact Header
-      - Menghapus 'bg-bone', membiarkannya menggunakan latar belakang layout.
-      - Menyesuaikan warna teks dengan palet teal.
-    --}}
     <section class="py-12 px-6"> {{-- Menghapus bg-bone --}}
         <div class="max-w-screen-xl mx-auto text-center">
             <h1 class="text-4xl font-playfair font-bold text-teal-900 dark:text-teal-100 mb-4">Contact Us</h1>
@@ -11,7 +6,6 @@
         </div>
     </section>
 
-    <!-- Contact Content -->
     <section class="pb-12 px-6">
         <div class="max-w-screen-xl mx-auto">
             <div class="grid md:grid-cols-2 gap-12">
@@ -92,7 +86,7 @@
                                 </svg>
                                 <div>
                                     <h3 class="font-medium text-teal-900 dark:text-teal-100">Email</h3>
-                                    <p class="text-teal-700 dark:text-teal-400">trkj.pnl@gmail.com</p>
+                                    <p class="text-teal-700 dark:text-teal-400">trkjcopium@gmail.com</p>
                                 </div>
                             </div>
 
@@ -102,7 +96,7 @@
                                 </svg>
                                 <div>
                                     <h3 class="font-medium text-teal-900 dark:text-teal-100">Phone</h3>
-                                    <p class="text-teal-700 dark:text-teal-400">+12(200)</p>
+                                    <p class="text-teal-700 dark:text-teal-400">+6285261146793</p>
                                 </div>
                             </div>
                         </div>
