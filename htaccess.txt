@@ -1,9 +1,3 @@
-
-
-// Source - https://stackoverflow.com/a
-// Posted by vittalgar
-// Retrieved 2025-11-16, License - CC BY-SA 4.0
-
 <IfModule mod_rewrite.c>
     <IfModule mod_rewrite.c>
 

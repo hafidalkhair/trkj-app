@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="{{ route('home') }}" class="flex items-center">
             <span
-                class="self-center text-2xl font-playfair font-semibold whitespace-nowrap text-teal-900 dark:text-teal-100">Copium</span>
+                class="self-center text-2xl font-playfair font-semibold whitespace-nowrap text-teal-900 dark:text-teal-100">COPIUM</span>
         </a>
         <button data-collapse-toggle="navbar-default" type="button"
             class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-teal-700 dark:text-teal-300 rounded-lg md:hidden hover:bg-teal-100 dark:hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-teal-300 dark:focus:ring-teal-700"
