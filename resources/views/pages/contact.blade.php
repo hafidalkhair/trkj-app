@@ -1,5 +1,6 @@
 <x-app-layout>
-    <section class="pt-40 pb-24 px-6 bg-slate-50 dark:bg-slate-950 min-h-screen flex items-center">
+    <!-- 1. FORM & INFO SECTION -->
+    <section class="pt-40 pb-12 px-6 bg-slate-50 dark:bg-slate-950 flex items-center">
         <div class="max-w-screen-xl mx-auto w-full">
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -33,7 +34,7 @@
                             </div>
                             <div class="ml-6">
                                 <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Email Us</h3>
-                                <p class="text-slate-500 dark:text-slate-400">hello@copium.class<br>support@copium.class</p>
+                                <p class="text-slate-500 dark:text-slate-400">trkjcopium@gmail.com<br>trkjcopium@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -87,6 +88,32 @@
                     </form>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. FULL WIDTH MAP SECTION -->
+    <section class="pb-24 px-6 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-screen-xl mx-auto w-full animate__animated animate__fadeInUp animate__delay-1s">
+            <div class="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-100 dark:border-slate-800 group">
+
+                <!-- Title Overlay (Optional, for style) -->
+                <div class="absolute top-6 left-6 z-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 pointer-events-none">
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest">Our Location</h3>
+                    <p class="text-xs text-slate-500">Gedung TIK, Lhokseumawe</p>
+                </div>
+
+                <!-- Google Map -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.897237407334!2d97.15330922569129!3d5.120258611532006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3047833e1943e83d%3A0xf2376bb0a10f266!2sGedung%20Teknologi%20Informasi%20dan%20Komputer!5e0!3m2!1sid!2sid!4v1748091966496!5m2!1sid!2sid"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out filter contrast-125 opacity-90 group-hover:opacity-100">
+                </iframe>
             </div>
         </div>
     </section>
