@@ -20,7 +20,7 @@ class HomeController extends Controller
 
         // Ambil member yang ditampilkan
         $members = Member::orderBy('display_order')
-            ->take(3)
+            ->take(30)
             ->get();
 
         // Ambil testimoni terpilih
