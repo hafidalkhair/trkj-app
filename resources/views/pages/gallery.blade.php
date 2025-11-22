@@ -221,7 +221,7 @@
     <script>
         function galleryComponent() {
             return {
-                
+
                 categories: @json($categories->load('photos')),
 
                 activeCategory: null,

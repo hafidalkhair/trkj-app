@@ -143,6 +143,20 @@
                         </div>
                         @endif
 
+                        @if($member->status)
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl">
+                            <p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Status</p>
+                            <p class="text-slate-900 dark:text-white italic">"{{ $member->status }}"</p>
+                        </div>
+                        @endif
+
+                        @if($member->hobbies)
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl">
+                            <p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Hobi</p>
+                            <p class="text-slate-900 dark:text-white italic">"{{ $member->hobbies }}"</p>
+                        </div>
+                        @endif
+
                         @if($member->social_media_links)
                         <div class="flex gap-2 flex-wrap mt-4">
                             @foreach($member->social_media_links as $platform => $url)
