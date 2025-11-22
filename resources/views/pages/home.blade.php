@@ -138,7 +138,7 @@
     -->
     <section class="py-16 px-6">
         <div class="max-w-screen-xl mx-auto">
-            <h2 class="text-3xl font-playfair font-bold text-teal-900 dark:text-teal-100 mb-8 text-center">What People Say</h2>
+            <h2 class="text-3xl font-playfair font-bold text-teal-900 dark:text-teal-100 mb-8 text-center">Comment</h2>
 
             @if($testimonials->isNotEmpty())
                 <div class="grid md:grid-cols-3 gap-8">
@@ -155,6 +155,7 @@
                                     <p class="text-sm text-teal-700 dark:text-teal-400">{{ $testimonial->created_at->format('M d, Y') }}</p>
                                 </div>
                             </div>
+
                             <div class="relative">
                                 <svg class="absolute -top-2 -left-2 w-8 h-8 text-teal-600/10 dark:text-teal-400/10" fill="currentColor" viewBox="0 0 32 32">
                                     <path d="M10 8c-3.314 0-6 2.686-6 6s2.686 6 6 6c.628 0 1.232-.096 1.801-.276.65 1.394 2.476 3.276 5.199 3.276v-2c-2.571 0-4-2.429-4-5 0-3.314-1.343-6-3-8zm15 0c-3.314 0-6 2.686-6 6s2.686 6 6 6c.628 0 1.232-.096 1.801-.276.65 1.394 2.476 3.276 5.199 3.276v-2c-2.571 0-4-2.429-4-5 0-3.314-1.343-6-3-8z"/>
@@ -167,6 +168,10 @@
             @else
                 <p class="text-center text-teal-700 dark:text-teal-400">No testimonials yet. Be the first one to leave a message!</p>
             @endif
+
+                        {{-- Endd --}}
+
+
 
             <div class="text-center mt-8">
                 <a href="{{ route('contact') }}" class="inline-flex items-center text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 transition-colors">

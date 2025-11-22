@@ -10,10 +10,24 @@ class ListMembers extends ListRecords
 {
     protected static string $resource = MemberResource::class;
 
+    public function getTitle(): string
+    {
+        return 'Daftar Anggota';
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\Action::make('view_structure')
+                ->label('Lihat Struktur Web')
+                ->icon('heroicon-o-globe-alt')
+                ->url(route('structure')) // Pastikan route 'structure' ada
+                ->openUrlInNewTab()
+                ->color('gray'),
+
+            Actions\CreateAction::make()
+                ->label('Tambah Anggota')
+                ->icon('heroicon-o-user-plus'),
         ];
     }
 }

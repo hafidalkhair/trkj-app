@@ -10,10 +10,24 @@ class ListCategories extends ListRecords
 {
     protected static string $resource = CategoryResource::class;
 
+    public function getTitle(): string
+    {
+        return 'Daftar Kategori';
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\Action::make('view_gallery')
+                ->label('Lihat Galeri Web')
+                ->icon('heroicon-o-globe-alt')
+                ->url(route('gallery'))
+                ->openUrlInNewTab()
+                ->color('gray'),
+
+            Actions\CreateAction::make()
+                ->label('Buat Kategori Baru')
+                ->icon('heroicon-o-plus'),
         ];
     }
 }
