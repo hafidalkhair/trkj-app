@@ -40,9 +40,18 @@ class CategoryResource extends Resource
 
                             Forms\Components\Textarea::make('description')
                                 ->label('Deskripsi Singkat')
-                                ->placeholder('Jelaskan isi kategori ini...')
-                                ->rows(3)
-                                ->maxLength(65535)
+                                ->placeholder('Isikan deskripsi singkatnya yaa....')
+                                ->rules([
+                                        function () {
+                                            return function (string $attribute, $value, \Closure $fail) {
+                                                // Hitung jumlah kata
+                                                if (str_word_count($value) > 15) {
+                                                    $fail('Deskripsi tidak boleh lebih dari 15 kata.');
+                                                }
+                                            };
+                                        },
+                                    ])
+                                ->helperText('Maksimal 15 kata.')
                                 ->columnSpan(1),
                         ]),
 
@@ -127,3 +136,4 @@ class CategoryResource extends Resource
         ];
     }
 }
+

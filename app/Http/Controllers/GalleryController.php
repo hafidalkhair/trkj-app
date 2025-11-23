@@ -14,7 +14,7 @@ class GalleryController extends Controller
             ->with(['photos' => function ($query) {
                 $query->latest();
             }])
-            ->latest() 
+            ->latest()
             ->get(6);
 
         return view('pages.gallery', [

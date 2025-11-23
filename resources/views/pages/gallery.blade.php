@@ -40,10 +40,10 @@
                  x-transition:leave-start="opacity-100 translate-x-0"
                  x-transition:leave-end="opacity-0 -translate-x-10">
 
-                <!-- Toolbar Album -->
+                <!-- Toolbar Album (REFINED DROPDOWN STYLE) -->
                 <div class="sticky top-24 z-30 mb-14 px-2 md:px-0">
                     <div class="bg-white/90 dark:bg-[#1E293B]/90 border border-slate-200 dark:border-slate-700/50
-                                rounded-3xl md:rounded-full shadow-2xl
+                                rounded-2xl md:rounded-full shadow-2xl
                                 flex flex-col md:flex-row items-center
                                 max-w-3xl mx-auto backdrop-blur-xl p-2 md:p-1.5 ring-1 ring-slate-900/5 transition-all duration-300">
 
@@ -61,26 +61,33 @@
                         <!-- Divider -->
                         <div class="w-full h-px bg-slate-100 dark:bg-slate-700/50 md:w-px md:h-8 md:bg-slate-200 md:dark:bg-slate-700 my-1 md:my-0 mx-0 md:mx-2"></div>
 
-                        <!-- Filter Dropdown -->
-                        <div class="relative w-full md:w-auto min-w-[220px]">
-                            <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500 dark:text-slate-400">
+                        <!-- Filter Dropdown (CONSISTENT STYLE) -->
+                        <div class="relative w-full md:w-auto min-w-[240px]">
+                            <!-- Icon Indikator (Teal) -->
+                            <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-teal-500 dark:text-teal-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                                 </svg>
                             </div>
+
+                            <!-- Select Element -->
                             <select x-model="selectedCategoryId"
-                                    class="w-full h-12 md:h-auto pl-5 pr-12 py-2 bg-transparent border-none focus:ring-0 rounded-xl text-sm font-bold text-slate-700 dark:text-white appearance-none cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-left md:text-right focus:outline-none">
-                                <option value="all">Semua Album</option>
+                                    class="w-full h-12 md:h-auto pl-5 pr-12 py-2 bg-transparent border-none focus:ring-0 rounded-xl text-sm font-bold text-slate-700 dark:text-white appearance-none cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors focus:outline-none">
+
+                                <!-- Options dengan Background Color yang Sesuai -->
+                                <option value="all" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white py-2">
+                                    Semua Album
+                                </option>
                                 <template x-for="cat in categories" :key="cat.id">
-                                    <option :value="cat.id" x-text="cat.name"></option>
+                                    <option :value="cat.id" x-text="cat.name" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white py-2"></option>
                                 </template>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <!-- Grid Album (UPDATED: 2 KOLOM DI MOBILE) -->
-                <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 px-2">
+                <!-- Grid Album -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-2">
                     <template x-for="category in paginatedCategories" :key="category.id">
                         <div @click="openCategory(category)"
                              class="group cursor-pointer relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10">
@@ -90,20 +97,17 @@
                                 <img :src="getCategoryCover(category)"
                                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-95 group-hover:opacity-100">
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60"></div>
-                                <div class="absolute top-2 right-2 md:top-3 md:right-3 bg-black/60 backdrop-blur-md border border-white/10 text-white px-2 py-0.5 md:px-2.5 md:py-1 rounded-md text-[8px] md:text-[10px] font-bold tracking-wider shadow-sm">
+                                <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md border border-white/10 text-white px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider shadow-sm">
                                     <span x-text="category.photos_count"></span> FOTO
                                 </div>
                             </div>
 
-                            <!-- Content Info -->
-                            <div class="flex flex-col gap-1 md:gap-2 p-3 md:p-5">
-                                <h3 class="text-sm md:text-xl font-bold text-slate-900 dark:text-white group-hover:text-teal-500 transition-colors line-clamp-1" x-text="category.name"></h3>
-
-                                <div class="flex items-center justify-between mt-1 pt-2 md:pt-3 border-t border-slate-100 dark:border-slate-800">
-                                    <p class="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 line-clamp-1 w-2/3" x-text="category.description || 'Album Kegiatan'"></p>
-
-                                    <span class="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-teal-500 flex items-center gap-1 transition-colors">
-                                        LIHAT <span class="text-[10px] md:text-sm">&rarr;</span>
+                            <div class="flex flex-col gap-2 p-5">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-teal-500 transition-colors line-clamp-1" x-text="category.name"></h3>
+                                <div class="flex items-center justify-between mt-1 pt-3 border-t border-slate-100 dark:border-slate-800">
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 w-2/3" x-text="category.description || 'Album Kegiatan'"></p>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-teal-500 flex items-center gap-1 transition-colors">
+                                        LIHAT <span class="text-sm">&rarr;</span>
                                     </span>
                                 </div>
                             </div>
@@ -172,7 +176,7 @@
                     </div>
                 </div>
 
-                <!-- Grid Foto (UPDATED: 2 KOLOM DI MOBILE) -->
+                <!-- Grid Foto -->
                 <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 px-2">
                     <template x-for="(photo, index) in paginatedPhotos" :key="photo.id">
                         <div class="group relative aspect-[4/3] bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
@@ -293,6 +297,7 @@
                 showSlideshow: false,
                 currentSlideIndex: 0,
 
+                // ZOOM & SWIPE STATE
                 scale: 1,
                 panning: false,
                 pointX: 0,
@@ -300,6 +305,7 @@
                 startX: 0,
                 startY: 0,
                 lastTouchTime: 0,
+                touchStartX: 0, // For Swipe Detection
 
                 initGallery() {
                     this.$watch('albumSearch', () => this.currentCatPage = 1);
@@ -337,10 +343,14 @@
                         e.preventDefault();
                     }
                     this.lastTouchTime = currentTime;
-                    if (this.scale > 1 && e.touches.length === 1) {
-                        this.panning = true;
-                        this.startX = e.touches[0].clientX - this.pointX;
-                        this.startY = e.touches[0].clientY - this.pointY;
+
+                    if (e.touches.length === 1) {
+                        this.touchStartX = e.touches[0].clientX;
+                        if (this.scale > 1) {
+                            this.panning = true;
+                            this.startX = e.touches[0].clientX - this.pointX;
+                            this.startY = e.touches[0].clientY - this.pointY;
+                        }
                     }
                 },
                 handleTouchMove(e) {
@@ -350,7 +360,17 @@
                         this.pointY = e.touches[0].clientY - this.startY;
                     }
                 },
-                handleTouchEnd() { this.panning = false; },
+                handleTouchEnd(e) {
+                    this.panning = false;
+                    if (this.scale === 1) {
+                        const touchEndX = e.changedTouches[0].clientX;
+                        const diffX = this.touchStartX - touchEndX;
+                        if (Math.abs(diffX) > 50) {
+                            if (diffX > 0) this.nextSlide();
+                            else this.prevSlide();
+                        }
+                    }
+                },
 
                 get filteredCategories() {
                     let cats = [...this.categories];
