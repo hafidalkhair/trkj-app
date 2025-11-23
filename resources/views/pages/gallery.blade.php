@@ -40,10 +40,10 @@
                  x-transition:leave-start="opacity-100 translate-x-0"
                  x-transition:leave-end="opacity-0 -translate-x-10">
 
-                <!-- Toolbar Album (REFINED DROPDOWN STYLE) -->
+                <!-- Toolbar Album -->
                 <div class="sticky top-24 z-30 mb-14 px-2 md:px-0">
                     <div class="bg-white/90 dark:bg-[#1E293B]/90 border border-slate-200 dark:border-slate-700/50
-                                rounded-2xl md:rounded-full shadow-2xl
+                                rounded-3xl md:rounded-full shadow-2xl
                                 flex flex-col md:flex-row items-center
                                 max-w-3xl mx-auto backdrop-blur-xl p-2 md:p-1.5 ring-1 ring-slate-900/5 transition-all duration-300">
 
@@ -61,25 +61,18 @@
                         <!-- Divider -->
                         <div class="w-full h-px bg-slate-100 dark:bg-slate-700/50 md:w-px md:h-8 md:bg-slate-200 md:dark:bg-slate-700 my-1 md:my-0 mx-0 md:mx-2"></div>
 
-                        <!-- Filter Dropdown (CONSISTENT STYLE) -->
-                        <div class="relative w-full md:w-auto min-w-[240px]">
-                            <!-- Icon Indikator (Teal) -->
-                            <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-teal-500 dark:text-teal-400">
+                        <!-- Filter Dropdown -->
+                        <div class="relative w-full md:w-auto min-w-[220px]">
+                            <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500 dark:text-slate-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                                 </svg>
                             </div>
-
-                            <!-- Select Element -->
                             <select x-model="selectedCategoryId"
-                                    class="w-full h-12 md:h-auto pl-5 pr-12 py-2 bg-transparent border-none focus:ring-0 rounded-xl text-sm font-bold text-slate-700 dark:text-white appearance-none cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors focus:outline-none">
-
-                                <!-- Options dengan Background Color yang Sesuai -->
-                                <option value="all" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white py-2">
-                                    Semua Album
-                                </option>
+                                    class="w-full h-12 md:h-auto pl-5 pr-12 py-2 bg-transparent border-none focus:ring-0 rounded-xl text-sm font-bold text-slate-700 dark:text-white appearance-none cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-left md:text-right focus:outline-none">
+                                <option value="all" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Semua Album</option>
                                 <template x-for="cat in categories" :key="cat.id">
-                                    <option :value="cat.id" x-text="cat.name" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white py-2"></option>
+                                    <option :value="cat.id" x-text="cat.name" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white"></option>
                                 </template>
                             </select>
                         </div>
@@ -176,7 +169,7 @@
                     </div>
                 </div>
 
-                <!-- Grid Foto -->
+                <!-- Grid Foto (UPDATED: 2 KOLOM DI MOBILE) -->
                 <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 px-2">
                     <template x-for="(photo, index) in paginatedPhotos" :key="photo.id">
                         <div class="group relative aspect-[4/3] bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
@@ -184,11 +177,13 @@
                             <img :src="getPhotoUrl(photo.image_path)"
                                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
 
+                            <!-- Overlay Hover (PERBAIKAN 1: Drop Shadow pada Teks) -->
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 md:p-6">
                                 <div class="w-full">
-                                    <div class="h-0.5 w-8 bg-teal-500 mb-2"></div>
-                                    <p class="text-white text-xs md:text-sm font-bold line-clamp-2 leading-relaxed" x-text="photo.caption || 'Tanpa caption'"></p>
-                                    <p class="text-slate-400 text-[8px] md:text-[10px] uppercase tracking-wider mt-1" x-text="formatDate(photo.event_date)"></p>
+                                    <div class="h-0.5 w-8 bg-teal-500 mb-2 shadow-sm"></div>
+                                    <!-- Tambahan drop-shadow-md agar jelas di light mode -->
+                                    <p class="text-white text-xs md:text-sm font-bold line-clamp-2 leading-relaxed drop-shadow-md" x-text="photo.caption || 'Tanpa caption'"></p>
+                                    <p class="text-slate-200 text-[8px] md:text-[10px] uppercase tracking-wider mt-1 drop-shadow-sm" x-text="formatDate(photo.event_date)"></p>
                                 </div>
                             </div>
                         </div>
@@ -218,37 +213,43 @@
                 </div>
             </div>
 
-            <!-- SLIDESHOW MODAL -->
+            <!-- SLIDESHOW MODAL (PERBAIKAN 2: ADAPTIF LIGHT/DARK) -->
             <template x-if="showSlideshow">
-                <div class="fixed inset-0 z-[100] bg-black/98 backdrop-blur-xl flex items-center justify-center overflow-hidden"
+                <!-- Background berubah sesuai mode: Putih di Light, Hitam di Dark -->
+                <div class="fixed inset-0 z-[100] bg-white/98 dark:bg-black/98 backdrop-blur-xl flex items-center justify-center overflow-hidden"
                      @click.self="closeSlideshow()" x-transition.opacity>
 
+                    <!-- Close Btn (Warna adaptif) -->
                     <div class="absolute top-6 right-6 z-50">
-                        <button @click="closeSlideshow()" class="text-white/50 hover:text-white p-2 transition-transform hover:rotate-90 rounded-full hover:bg-white/10">
+                        <button @click="closeSlideshow()" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 transition-transform hover:rotate-90 rounded-full hover:bg-slate-100 dark:hover:bg-white/10">
                             <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                     </div>
 
+                    <!-- Zoom Controls (Warna adaptif) -->
                     <div class="absolute bottom-6 right-6 z-[150] flex gap-2">
-                        <button @click="zoomOut()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md transition-all">
+                        <button @click="zoomOut()" class="bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-600 dark:text-white p-3 rounded-full backdrop-blur-md transition-all">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
                         </button>
-                        <button @click="resetZoom()" class="bg-white/10 hover:bg-white/20 text-white px-3 rounded-full backdrop-blur-md text-xs font-bold transition-all" x-show="scale > 1">
+                        <button @click="resetZoom()" class="bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-600 dark:text-white px-3 rounded-full backdrop-blur-md text-xs font-bold transition-all" x-show="scale > 1">
                             RESET
                         </button>
-                        <button @click="zoomIn()" class="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md transition-all">
+                        <button @click="zoomIn()" class="bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-600 dark:text-white p-3 rounded-full backdrop-blur-md transition-all">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                         </button>
                     </div>
 
-                    <button @click.stop="prevSlide()" class="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-4 rounded-full bg-white/5 hover:bg-white/10 z-[150] transition-all hover:scale-110">
+                    <!-- Nav Prev (Warna adaptif) -->
+                    <button @click.stop="prevSlide()" class="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-900 dark:text-white/50 dark:hover:text-white p-4 rounded-full bg-slate-100/80 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 z-[150] transition-all hover:scale-110 items-center justify-center">
                          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
 
-                    <button @click.stop="nextSlide()" class="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-4 rounded-full bg-white/5 hover:bg-white/10 z-[150] transition-all hover:scale-110">
+                    <!-- Nav Next (Warna adaptif) -->
+                    <button @click.stop="nextSlide()" class="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-900 dark:text-white/50 dark:hover:text-white p-4 rounded-full bg-slate-100/80 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 z-[150] transition-all hover:scale-110 items-center justify-center">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                    </button>
 
+                    <!-- Main Image Container -->
                     <div class="relative w-full h-full flex items-center justify-center overflow-hidden"
                          @wheel.prevent="handleWheel"
                          @mousedown="startDrag"
@@ -259,9 +260,10 @@
                          @touchmove="handleTouchMove"
                          @touchend="handleTouchEnd">
 
+                        <!-- Info Caption (Warna adaptif) -->
                         <div class="absolute top-6 left-6 z-[140] max-w-xl transition-opacity duration-300 px-4 md:px-0" :class="{'opacity-0': scale > 1}">
-                            <p class="text-white text-lg md:text-xl font-bold leading-tight drop-shadow-md" x-text="currentSlideData.caption"></p>
-                            <p class="text-teal-400 text-[10px] md:text-xs font-mono uppercase tracking-wider mt-1 drop-shadow-md" x-text="formatDate(currentSlideData.event_date)"></p>
+                            <p class="text-slate-900 dark:text-white text-lg md:text-xl font-bold leading-tight drop-shadow-sm" x-text="currentSlideData.caption"></p>
+                            <p class="text-teal-600 dark:text-teal-400 text-[10px] md:text-xs font-mono uppercase tracking-wider mt-1" x-text="formatDate(currentSlideData.event_date)"></p>
                         </div>
 
                         <div class="transition-transform duration-100 ease-out origin-center"
