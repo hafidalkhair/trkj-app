@@ -25,7 +25,7 @@
                             <!-- Card Content -->
                             <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 w-64 text-center transition-all duration-300 hover:-translate-y-2 hover:border-teal-500 dark:hover:border-teal-500">
 
-                                <!-- FOTO PROFIL YANG BISA DIKLIK -->
+                                <!-- FOTO PROFIL (List View) -->
                                 <div class="relative w-24 h-24 mx-auto mb-4 group-avatar cursor-pointer" onclick="showModal('member-{{ $leader->id }}')">
                                     <div class="absolute inset-0 rounded-full border-4 border-teal-50 dark:border-teal-900 group-hover:border-teal-500 transition-colors z-10"></div>
                                     <img src="{{ $leader->profile_image ? asset('storage/' . $leader->profile_image) : asset('images/default-avatar.png') }}"
@@ -105,7 +105,7 @@
         </div>
     </section>
 
-    <!-- MEMBER DETAIL MODALS (Sama seperti sebelumnya) -->
+    <!-- MEMBER DETAIL MODALS -->
     @foreach($leaders->merge($members) as $member)
         <div id="member-{{ $member->id }}" class="fixed inset-0 z-[100] hidden transition-opacity duration-300" aria-hidden="true">
             <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="hideModal('member-{{ $member->id }}')"></div>
@@ -113,14 +113,25 @@
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700 animate__animated animate__zoomIn animate__faster">
 
                 <div class="h-32 bg-gradient-to-r from-teal-500 to-blue-600 relative">
-                    <button onclick="hideModal('member-{{ $member->id }}')" class="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-colors">
+                    <button onclick="hideModal('member-{{ $member->id }}')" class="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-colors z-20">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
 
                 <div class="px-8 pb-8 -mt-12 relative">
-                    <div class="w-24 h-24 rounded-full border-4 border-white dark:border-slate-900 overflow-hidden shadow-md bg-white">
-                        <img src="{{ $member->profile_image ? asset('storage/' . $member->profile_image) : asset('images/default-avatar.png') }}" class="w-full h-full object-cover object-center">
+                    <!-- FITUR BARU: FOTO BISA DIKLIK (ZOOM) -->
+                    <div class="w-24 h-24 rounded-full border-4 border-white dark:border-slate-900 overflow-hidden shadow-md bg-white cursor-zoom-in group relative"
+                         onclick="openLightbox('{{ $member->profile_image ? asset('storage/' . $member->profile_image) : asset('images/default-avatar.png') }}')">
+
+                        <img src="{{ $member->profile_image ? asset('storage/' . $member->profile_image) : asset('images/default-avatar.png') }}"
+                             class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110">
+
+                        <!-- Overlay Hint Zoom -->
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                            </svg>
+                        </div>
                     </div>
 
                     <div class="mt-4">
@@ -172,20 +183,76 @@
         </div>
     @endforeach
 
+    <!-- LIGHTBOX COMPONENT (FULL SCREEN IMAGE) -->
+    <div id="profile-lightbox"
+         class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center cursor-zoom-out transition-all duration-300 opacity-0"
+         onclick="closeLightbox()">
+
+        <!-- Close Button -->
+        <button class="absolute top-6 right-6 text-white/50 hover:text-white p-2 transition-colors">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+        <img id="lightbox-img" src=""
+             class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl transform scale-95 transition-all duration-300"
+             onclick="event.stopPropagation()"> <!-- Mencegah close saat klik gambar -->
+    </div>
+
     @push('scripts')
     <script>
+        // Fungsi Modal Detail Member
         function showModal(id) {
             const el = document.getElementById(id);
             el.classList.remove('hidden');
+            // Animasi masuk sederhana
+            setTimeout(() => {
+                el.firstElementChild.nextElementSibling.classList.remove('scale-95', 'opacity-0');
+                el.firstElementChild.nextElementSibling.classList.add('scale-100', 'opacity-100');
+            }, 10);
             document.body.style.overflow = 'hidden';
         }
+
         function hideModal(id) {
             const el = document.getElementById(id);
-            el.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+            // Animasi keluar
+            el.firstElementChild.nextElementSibling.classList.remove('scale-100', 'opacity-100');
+            el.firstElementChild.nextElementSibling.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                el.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 200); // Sesuaikan dengan duration transition
+        }
+
+        // Fungsi Lightbox Foto Profil
+        function openLightbox(src) {
+            const lightbox = document.getElementById('profile-lightbox');
+            const img = document.getElementById('lightbox-img');
+
+            img.src = src;
+            lightbox.classList.remove('hidden');
+
+            // Delay sedikit agar transition opacity berjalan
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                img.classList.remove('scale-95');
+                img.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('profile-lightbox');
+            const img = document.getElementById('lightbox-img');
+
+            lightbox.classList.add('opacity-0');
+            img.classList.remove('scale-100');
+            img.classList.add('scale-95');
+
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                img.src = ''; // Reset source
+            }, 300);
         }
     </script>
     @endpush
 </x-app-layout>
-
-
