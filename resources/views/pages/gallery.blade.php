@@ -98,7 +98,7 @@
                             <div class="flex flex-col gap-2 p-5">
                                 <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-teal-500 transition-colors line-clamp-1" x-text="category.name"></h3>
                                 <div class="flex items-center justify-between mt-1 pt-3 border-t border-slate-100 dark:border-slate-800">
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 w-2/3" x-text="category.description || 'Album Kegiatan'"></p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 w-2/3" x-text="category.description || 'Album Kegiatan'"></p>
                                     <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-teal-500 flex items-center gap-1 transition-colors">
                                         LIHAT <span class="text-sm">&rarr;</span>
                                     </span>
