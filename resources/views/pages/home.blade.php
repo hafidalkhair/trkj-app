@@ -71,43 +71,76 @@
 
     <!-- 2. STATS BAR -->
 
+<!-- 2. STATS BAR -->
+    <div class="relative z-20 -mt-24 px-6">
+        <div class="max-w-5xl mx-auto bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-700 p-8 md:p-12 flex flex-col md:flex-row justify-around text-center backdrop-blur-xl bg-opacity-95 dark:bg-opacity-95 gap-8 md:gap-0">
 
-<div class="relative z-20 -mt-24 px-6">
-    <div
-        class="max-w-5xl mx-auto bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-700 p-8 md:p-12 flex flex-col md:flex-row justify-around text-center backdrop-blur-xl bg-opacity-95 dark:bg-opacity-95 gap-8 md:gap-0">
+            <!-- ESTABLISHED -->
+            <div class="p-2">
+                <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400">{{ 2023 }}</h3>
+                <p class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-bold mt-2">Angkatan</p>
+            </div>
 
-        <!-- MEMBERS -->
-        <div class="p-2">
-            <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400 counter-animate"
-                x-data="{ count: 0 }" x-intersect="count = {{ $totalMembers }}"
-                x-effect="let i=0; const interval=setInterval(()=>{if(i>=count){clearInterval(interval)}else{i++;$el.innerText=i}}, 100)">
-                0
-            </h3>
-            <p class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-bold mt-2">Members</p>
+            <div class="w-px bg-slate-200 dark:bg-slate-700 hidden md:block h-20 self-center"></div>
+            <div class="h-px bg-slate-200 dark:bg-slate-700 w-full block md:hidden"></div>
+
+            <!-- MEMBERS (DIPERBAIKI) -->
+            <div class="p-2" x-data="{ current: 0, target: {{ $totalMembers }} }">
+                <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400"
+                    x-intersect.once="
+                        $nextTick(() => {
+                            const duration = 2000; // Durasi animasi 2 detik
+                            const start = 0;
+                            const end = target;
+                            let startTimestamp = null;
+                            const step = (timestamp) => {
+                                if (!startTimestamp) startTimestamp = timestamp;
+                                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                                current = Math.floor(progress * (end - start) + start);
+                                if (progress < 1) {
+                                    window.requestAnimationFrame(step);
+                                }
+                            };
+                            window.requestAnimationFrame(step);
+                        })
+                    "
+                    x-text="current">
+                    0
+                </h3>
+                <p class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-bold mt-2">Members</p>
+            </div>
+
+            <div class="w-px bg-slate-200 dark:bg-slate-700 hidden md:block h-20 self-center"></div>
+            <div class="h-px bg-slate-200 dark:bg-slate-700 w-full block md:hidden"></div>
+
+            <!-- ALBUMS (DIPERBAIKI JUGA AGAR KONSISTEN) -->
+            <div class="p-2" x-data="{ current: 0, target: {{ $totalCategories }} }">
+                <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400"
+                    x-intersect.once="
+                        $nextTick(() => {
+                            const duration = 2000;
+                            const start = 0;
+                            const end = target;
+                            let startTimestamp = null;
+                            const step = (timestamp) => {
+                                if (!startTimestamp) startTimestamp = timestamp;
+                                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                                current = Math.floor(progress * (end - start) + start);
+                                if (progress < 1) {
+                                    window.requestAnimationFrame(step);
+                                }
+                            };
+                            window.requestAnimationFrame(step);
+                        })
+                    "
+                    x-text="current">
+                    0
+                </h3>
+                <p class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-bold mt-2">Albums</p>
+            </div>
+
         </div>
-
-        <div class="w-px bg-slate-200 dark:bg-slate-700 hidden md:block h-20 self-center"></div>
-        <div class="h-px bg-slate-200 dark:bg-slate-700 w-full block md:hidden"></div>
-
-        <!-- ALBUMS -->
-        <div class="p-2">
-            <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400">
-                {{ $totalCategories }}
-            </h3>
-            <p class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-bold mt-2">Albums</p>
-        </div>
-
-        <div class="w-px bg-slate-200 dark:bg-slate-700 hidden md:block h-20 self-center"></div>
-        <div class="h-px bg-slate-200 dark:bg-slate-700 w-full block md:hidden"></div>
-
-        <!-- ESTABLISHED -->
-        <div class="p-2">
-            <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400">{{ date('Y') }}</h3>
-            <p class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-bold mt-2">Established</p>
-        </div>
-
     </div>
-</div>
 
 
 

@@ -9,9 +9,13 @@ class GalleryController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::with(['photos' => function ($query) {
-            $query->latest();
-        }])->get();
+        // Tetap ambil semua (get) agar search & pagination di Alpine.js lancar
+        $categories = Category::withCount('photos')
+            ->with(['photos' => function ($query) {
+                $query->latest();
+            }])
+            ->latest() 
+            ->get(6);
 
         return view('pages.gallery', [
             'categories' => $categories,

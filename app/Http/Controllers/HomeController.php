@@ -32,7 +32,7 @@ class HomeController extends Controller
         // ====== AUTO STATS ======
         $totalMembers      = Member::count();
         $totalCategories   = Category::count();
-        $totalPhotos       = \App\Models\Photo::count();
+        $totalPhotos       = Photo::count();
         $totalTestimonials = ContactMessage::where('is_featured', true)->count();
 
 
