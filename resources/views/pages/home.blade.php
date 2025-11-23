@@ -246,17 +246,6 @@
                     </h2>
                     <p class="text-lg text-slate-500">The people working behind the scenes.</p>
                 </div>
-                <a href="{{ route('structure') }}"
-                    class="group text-teal-600 font-bold text-lg hover:text-teal-800 mt-8 md:mt-0 flex items-center transition-colors">
-                    See Full Structure
-                    <span
-                        class="bg-teal-100 dark:bg-teal-900 p-2 rounded-full ml-3 group-hover:bg-teal-200 transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </span>
-                </a>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -289,6 +278,17 @@
                         </div>
                     @endif
                 @endforeach
+                <a href="{{ route('structure') }}"
+                    class="group text-teal-600 font-bold text-lg hover:text-teal-800 mt-8 md:mt-0 flex items-center transition-colors">
+                    See Full Structure
+                    <span
+                        class="bg-teal-100 dark:bg-teal-900 p-2 rounded-full ml-3 group-hover:bg-teal-200 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </span>
+                </a>
             </div>
         </div>
     </section>
