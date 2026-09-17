@@ -28,6 +28,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('about') }}" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors inline-flex items-center group">
+                            <span class="w-0 group-hover:w-2 h-0.5 bg-teal-600 mr-0 group-hover:mr-2 transition-all duration-300"></span>
+                            About
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('gallery') }}" class="hover:text-teal-600 dark:hover:text-teal-400 transition-colors inline-flex items-center group">
                             <span class="w-0 group-hover:w-2 h-0.5 bg-teal-600 mr-0 group-hover:mr-2 transition-all duration-300"></span>
                             Gallery

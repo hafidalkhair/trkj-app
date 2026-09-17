@@ -148,6 +148,9 @@
     <section id="gallery" class="py-32 px-6 bg-slate-50 dark:bg-slate-950">
         <div class="max-w-screen-xl mx-auto">
             <div class="text-center mb-20" x-data="{ show: false }" x-intersect.threshold.50="show = true">
+                <span class="inline-block py-2 px-4 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-xs font-bold mb-6 tracking-widest uppercase">
+                    Gallery
+                </span>
                 <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 transition-all duration-700 transform"
                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
                     Captured Moments
@@ -210,7 +213,7 @@
         <div
             class="absolute top-0 right-0 -mr-32 -mt-32 w-[20rem] md:w-[32rem] h-[20rem] md:h-[32rem] rounded-full bg-teal-500/20 blur-3xl animate-pulse">
         </div>
-        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-[18rem] md:w-[28rem] h-[18rem] md:h-[28rem] rounded-full bg-blue-500/20 blur-3xl animate-pulse"
+        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-[18rem] md:w-[28rem] h-[18rem] md:h-[28rem] rounded-full bg-teal-300/10 blur-3xl animate-pulse"
             style="animation-duration: 4s"></div>
 
         <div class="max-w-5xl mx-auto px-6 text-center relative z-10" x-data="{ show: false }" x-intersect="show = true">
@@ -242,6 +245,9 @@
         <div class="max-w-screen-xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20">
                 <div>
+                    <span class="inline-block py-2 px-4 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-xs font-bold mb-4 tracking-widest uppercase">
+                        Organization
+                    </span>
                     <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">Meet the Leaders
                     </h2>
                     <p class="text-lg text-slate-500">The people working behind the scenes.</p>
@@ -298,6 +304,9 @@
 
             <!-- Title -->
             <div class="text-center mb-20" x-data="{ show: false }" x-intersect="show = true">
+                <span class="inline-block py-2 px-4 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-xs font-bold mb-6 tracking-widest uppercase">
+                    Community
+                </span>
                 <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 transition-all duration-700 transform"
                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
                     Voices & Messages

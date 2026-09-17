@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> <!-- Fix zoom iOS -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? config('app.name', 'Class Portfolio') }}</title>
+    <title>{{ $title ?? config('app.name', 'TRKJ') }}</title>
+    <meta name="description" content="{{ $description ?? 'TRKJ — komunitas dan organisasi digital dengan galeri kegiatan, struktur anggota, dan informasi terkini.' }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
 
     <!-- FONT: Clash Display dari Fontshare -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
 
     <!-- Animate.css -->
@@ -22,21 +25,16 @@
     @stack('head-styles')
 
     <style>
-        /* Set Font Global ke Clash Display */
-        body {
-            font-family: 'Clash Display', sans-serif;
-        }
-
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: transparent;
         }
         ::-webkit-scrollbar-thumb {
             background: #0d9488; /* Teal-600 */
-            border-radius: 4px;
+            border-radius: 999px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #0f766e;
@@ -47,6 +45,11 @@
         }
 
         [x-cloak] { display: none !important; }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
     </style>
 
     <script>
@@ -58,19 +61,23 @@
     </script>
 </head>
 
-<body class="antialiased bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 ease-in-out selection:bg-teal-500 selection:text-white no-scroll"
+<body class="font-sans antialiased bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 ease-in-out selection:bg-teal-500 selection:text-white no-scroll"
       x-data="{ loading: true }"
-      x-init="setTimeout(() => { loading = false; document.body.classList.remove('no-scroll') }, 1000)">
+      x-init="setTimeout(() => { loading = false; document.body.classList.remove('no-scroll') }, 900)">
 
-    <!-- Modern Preloader -->
+    <!-- Preloader -->
     <div x-show="loading"
          x-transition:leave="transition ease-in duration-500"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 z-[100] flex items-center justify-center bg-white dark:bg-slate-950">
         <div class="text-center">
-            <div class="w-16 h-16 border-4 border-teal-200 border-t-teal-600 rounded-full animate-spin mb-4 mx-auto"></div>
-            <h2 class="text-xl font-semibold text-teal-800 dark:text-teal-200 animate-pulse tracking-wider">LOADING...</h2>
+            <div class="w-12 h-12 rounded-2xl bg-teal-600 text-white flex items-center justify-center font-bold text-xl shadow-brand mb-5 mx-auto animate-pulse">
+                T
+            </div>
+            <div class="w-24 h-1 rounded-full bg-slate-100 dark:bg-slate-800 mx-auto overflow-hidden">
+                <div class="h-full w-1/2 bg-teal-600 rounded-full animate-[loading_1s_ease-in-out_infinite]"></div>
+            </div>
         </div>
     </div>
 
