@@ -112,7 +112,7 @@
 
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700 animate__animated animate__zoomIn animate__faster">
 
-                <div class="h-32 bg-gradient-to-r from-teal-500 to-blue-600 relative">
+                <div class="h-32 bg-gradient-to-r from-teal-500 to-teal-800 relative">
                     <button onclick="hideModal('member-{{ $member->id }}')" class="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-colors z-20">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>

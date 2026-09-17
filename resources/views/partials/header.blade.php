@@ -65,6 +65,7 @@
             <ul class="flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0 font-medium tracking-wide">
                 @foreach([
                     ['route' => 'home', 'label' => 'Home'],
+                    ['route' => 'about', 'label' => 'About'],
                     ['route' => 'gallery', 'label' => 'Gallery'],
                     ['route' => 'structure', 'label' => 'Structure'],
                     ['route' => 'contact', 'label' => 'Contact']
@@ -107,6 +108,7 @@
             <ul class="flex flex-col p-2 font-medium space-y-1">
                 @foreach([
                     ['route' => 'home', 'label' => 'Home'],
+                    ['route' => 'about', 'label' => 'About'],
                     ['route' => 'gallery', 'label' => 'Gallery'],
                     ['route' => 'structure', 'label' => 'Structure'],
                     ['route' => 'contact', 'label' => 'Contact']
