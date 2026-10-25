@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Member;
 use App\Models\Photo;
 use App\Models\ContactMessage;
+use App\Models\StoryChapter;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -29,6 +30,9 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
+        // Ambil babak cerita untuk section scroll-story
+        $storyChapters = StoryChapter::orderBy('display_order')->get();
+
         // ====== AUTO STATS ======
         $totalMembers      = Member::count();
         $totalCategories   = Category::count();
@@ -40,6 +44,7 @@ class HomeController extends Controller
             'latestPhotos',
             'members',
             'testimonials',
+            'storyChapters',
             'totalMembers',
             'totalCategories',
             'totalPhotos',
