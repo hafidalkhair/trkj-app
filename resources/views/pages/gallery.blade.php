@@ -56,22 +56,27 @@
                     </div>
 
                     <!-- Category Chips -->
-                    <div class="flex items-center gap-2.5 overflow-x-auto scrollbar-hide px-1 py-1">
+                    <div class="flex flex-wrap items-center justify-center gap-2.5 px-1">
                         <button type="button" @click="selectedCategoryId = 'all'"
-                                class="flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200"
+                                class="px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200"
                                 :class="selectedCategoryId === 'all'
                                     ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
                                     : 'bg-white dark:bg-[#1E293B] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300 hover:text-blue-600'">
                             Semua Album
                         </button>
-                        <template x-for="cat in categories" :key="cat.id">
+                        <template x-for="cat in visibleCategoryChips" :key="cat.id">
                             <button type="button" @click="selectedCategoryId = cat.id"
-                                    class="flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200"
+                                    class="px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200"
                                     :class="selectedCategoryId == cat.id
                                         ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
                                         : 'bg-white dark:bg-[#1E293B] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300 hover:text-blue-600'"
                                     x-text="cat.name"></button>
                         </template>
+                        <button type="button" x-show="categories.length > chipLimit" x-cloak
+                                @click="showAllCategoryChips = !showAllCategoryChips"
+                                class="px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200 bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400">
+                            <span x-text="showAllCategoryChips ? 'Tutup' : '+' + (categories.length - chipLimit) + ' Lainnya'"></span>
+                        </button>
                     </div>
                 </div>
 
@@ -285,6 +290,8 @@
 
                 albumSearch: '',
                 selectedCategoryId: 'all',
+                chipLimit: 8,
+                showAllCategoryChips: false,
                 photoSearch: '',
 
                 currentCatPage: 1,
@@ -369,6 +376,10 @@
                             else this.prevSlide();
                         }
                     }
+                },
+
+                get visibleCategoryChips() {
+                    return this.showAllCategoryChips ? this.categories : this.categories.slice(0, this.chipLimit);
                 },
 
                 get filteredCategories() {
@@ -485,16 +496,4 @@
             }
         }
     </script>
-
-    @push('head-styles')
-        <style>
-            .scrollbar-hide {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-            .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-            }
-        </style>
-    @endpush
 </x-app-layout>

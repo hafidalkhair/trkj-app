@@ -144,7 +144,42 @@
 
 
 
-    <!-- 3. LATEST ALBUMS -->
+    @if($storyChapters->count() > 0)
+    <!-- 3. OUR STORY (Scroll Reveal) -->
+    <section class="relative bg-slate-950">
+        <div class="text-center pt-28 pb-16 px-6">
+            <span class="inline-block py-2 px-4 rounded-full bg-blue-900/30 text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
+                Our Story
+            </span>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Perjalanan Kami</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Setiap babak punya ceritanya sendiri. Scroll untuk menelusuri.</p>
+        </div>
+
+        @foreach($storyChapters as $index => $chapter)
+            <div class="relative h-screen flex items-center justify-center overflow-hidden"
+                 x-data="{ show: false }" x-intersect.threshold.30="show = true">
+                <div class="absolute inset-0">
+                    <img src="{{ asset('storage/' . $chapter->image) }}"
+                         alt="{{ $chapter->title }}"
+                         class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out"
+                         :class="show ? 'scale-100' : 'scale-110'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/30"></div>
+                </div>
+
+                <div class="relative z-10 text-center px-6 max-w-2xl mx-auto transition-all duration-1000 delay-200"
+                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+                    <span class="text-blue-400 font-mono text-sm tracking-widest mb-4 block">
+                        {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }} / {{ str_pad($storyChapters->count(), 2, '0', STR_PAD_LEFT) }}
+                    </span>
+                    <h3 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">{{ $chapter->title }}</h3>
+                    <p class="text-slate-300 text-base md:text-lg leading-relaxed">{{ $chapter->text }}</p>
+                </div>
+            </div>
+        @endforeach
+    </section>
+    @endif
+
+    <!-- 4. LATEST ALBUMS -->
     <section id="gallery" class="py-32 px-6 bg-slate-50 dark:bg-slate-950">
         <div class="max-w-screen-xl mx-auto">
             <div class="text-center mb-20" x-data="{ show: false }" x-intersect.threshold.50="show = true">
@@ -208,13 +243,12 @@
         </div>
     </section>
 
-    <!-- 4. QUOTE SECTION -->
-    <section class="py-32 md:py-40 relative bg-blue-900 overflow-hidden flex items-center justify-center">
+    <!-- 5. QUOTE SECTION -->
+    <section class="py-32 md:py-40 relative bg-gradient-to-b from-slate-900 via-slate-950 to-blue-950 overflow-hidden flex items-center justify-center">
         <div
-            class="absolute top-0 right-0 -mr-32 -mt-32 w-[20rem] md:w-[32rem] h-[20rem] md:h-[32rem] rounded-full bg-blue-500/20 blur-3xl animate-pulse">
+            class="absolute top-0 right-0 -mr-32 -mt-32 w-[20rem] md:w-[32rem] h-[20rem] md:h-[32rem] rounded-full bg-blue-500/10 blur-3xl">
         </div>
-        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-[18rem] md:w-[28rem] h-[18rem] md:h-[28rem] rounded-full bg-blue-300/10 blur-3xl animate-pulse"
-            style="animation-duration: 4s"></div>
+        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-[18rem] md:w-[28rem] h-[18rem] md:h-[28rem] rounded-full bg-blue-400/5 blur-3xl"></div>
 
         <div class="max-w-5xl mx-auto px-6 text-center relative z-10" x-data="{ show: false }" x-intersect="show = true">
             <svg class="w-16 h-16 md:w-20 md:h-20 text-blue-400/40 mx-auto mb-8 md:mb-12" fill="currentColor"
@@ -240,7 +274,7 @@
         </div>
     </section>
 
-    <!-- 5. LEADERSHIP TEAM -->
+    <!-- 6. LEADERSHIP TEAM -->
     <section class="py-32 px-6">
         <div class="max-w-screen-xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20">
@@ -298,7 +332,7 @@
             </div>
         </div>
     </section>
-    <!-- 6. FEATURED MESSAGES -->
+    <!-- 7. FEATURED MESSAGES -->
     <section class="py-32 px-6 bg-white dark:bg-slate-950">
         <div class="max-w-screen-xl mx-auto">
 
