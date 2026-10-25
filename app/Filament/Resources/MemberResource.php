@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MemberResource\Pages;
 use App\Models\Member;
+use App\Support\ImageOptimizer;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -11,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Grid;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class MemberResource extends Resource
 {
@@ -93,7 +95,11 @@ class MemberResource extends Resource
                                 ->imageEditor() // Fitur crop
                                 ->imageEditorAspectRatios(['1:1']) // Paksa rasio persegi
                                 ->maxSize(5120)
-                                ->columnSpanFull(),
+                                ->columnSpanFull()
+                                // Konversi otomatis ke WebP agar halaman lebih ringan.
+                                ->saveUploadedFileUsing(
+                                    fn (TemporaryUploadedFile $file): string => ImageOptimizer::storeAsWebp($file, 'profile-images')
+                                ),
 
                             Forms\Components\Textarea::make('hobbies')
                                 ->label('Hobi')

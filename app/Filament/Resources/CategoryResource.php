@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Models\Category;
+use App\Support\ImageOptimizer;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -11,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Grid;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CategoryResource extends Resource
 {
@@ -67,7 +69,11 @@ class CategoryResource extends Resource
                             ])
                             ->columnSpanFull()
                             ->downloadable()
-                            ->openable(),
+                            ->openable()
+                            // Konversi otomatis ke WebP agar galeri lebih ringan.
+                            ->saveUploadedFileUsing(
+                                fn (TemporaryUploadedFile $file): string => ImageOptimizer::storeAsWebp($file, 'category-covers')
+                            ),
                     ]),
             ]);
     }
