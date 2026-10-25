@@ -1,4 +1,72 @@
 <x-app-layout>
+    @if($storyChapters->count() > 0)
+        @php
+            $storyChaptersJs = $storyChapters->map(fn($c) => [
+                'title' => $c->title,
+                'text' => $c->text,
+                'image' => asset('storage/' . $c->image),
+            ])->values();
+        @endphp
+        <!-- 0. STORY INTRO (Sticky Scroll Reveal) -->
+        <section class="relative bg-slate-950"
+                 x-data="storyIntro({{ \Illuminate\Support\Js::from($storyChaptersJs) }})"
+                 style="height: {{ $storyChapters->count() * 100 }}vh">
+
+            <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+                <!-- Crossfading background images -->
+                <template x-for="(chapter, i) in chapters" :key="i">
+                    <img :src="chapter.image" :alt="chapter.title"
+                         class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[1400ms] ease-in-out"
+                         :class="active === i ? 'opacity-100' : 'opacity-0'">
+                </template>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-slate-950/20"></div>
+
+                <!-- Crossfading text -->
+                <div class="relative z-10 w-full">
+                    <template x-for="(chapter, i) in chapters" :key="i">
+                        <div x-show="active === i"
+                             x-transition:enter="transition ease-out duration-700 delay-200"
+                             x-transition:enter-start="opacity-0 translate-y-6"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-300"
+                             x-transition:leave-start="opacity-100 translate-y-0"
+                             x-transition:leave-end="opacity-0 -translate-y-4"
+                             class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                            <span class="text-blue-300/80 font-mono text-xs tracking-[0.3em] uppercase mb-5"
+                                  x-text="String(i + 1).padStart(2, '0') + ' / ' + String(chapters.length).padStart(2, '0')"></span>
+                            <h2 class="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight max-w-3xl" x-text="chapter.title"></h2>
+                            <p class="text-slate-300 text-base md:text-lg leading-relaxed max-w-xl" x-text="chapter.text"></p>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Progress dots -->
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                    <template x-for="(chapter, i) in chapters" :key="i">
+                        <div class="h-1 rounded-full transition-all duration-500" :class="active === i ? 'w-8 bg-blue-400' : 'w-1.5 bg-white/25'"></div>
+                    </template>
+                </div>
+
+                <!-- Scroll cue, shown once the last chapter is reached -->
+                <div x-show="active === chapters.length - 1"
+                     x-transition.opacity.duration.700
+                     class="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 z-20">
+                    <span class="text-[10px] uppercase tracking-[0.2em]">Masuk ke Beranda</span>
+                    <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Invisible scroll-position triggers, one per chapter -->
+            <div class="absolute inset-0 pointer-events-none">
+                <template x-for="(chapter, i) in chapters" :key="i">
+                    <div class="h-screen" x-intersect.threshold.50="active = i"></div>
+                </template>
+            </div>
+        </section>
+    @endif
+
     <!-- 1. HERO SECTION -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
 
@@ -144,48 +212,14 @@
 
 
 
-    @if($storyChapters->count() > 0)
-    <!-- 3. OUR STORY (Scroll Reveal) -->
-    <section class="relative bg-slate-950">
-        <div class="text-center pt-28 pb-16 px-6">
-            <span class="inline-block py-2 px-4 rounded-full bg-blue-900/30 text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
-                Our Story
-            </span>
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Perjalanan Kami</h2>
-            <p class="text-slate-400 max-w-xl mx-auto">Setiap babak punya ceritanya sendiri. Scroll untuk menelusuri.</p>
-        </div>
-
-        @foreach($storyChapters as $index => $chapter)
-            <div class="relative h-screen flex items-center justify-center overflow-hidden"
-                 x-data="{ show: false }" x-intersect.threshold.30="show = true">
-                <div class="absolute inset-0">
-                    <img src="{{ asset('storage/' . $chapter->image) }}"
-                         alt="{{ $chapter->title }}"
-                         class="w-full h-full object-cover transition-transform duration-[2000ms] ease-out"
-                         :class="show ? 'scale-100' : 'scale-110'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/30"></div>
-                </div>
-
-                <div class="relative z-10 text-center px-6 max-w-2xl mx-auto transition-all duration-1000 delay-200"
-                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-                    <span class="text-blue-400 font-mono text-sm tracking-widest mb-4 block">
-                        {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }} / {{ str_pad($storyChapters->count(), 2, '0', STR_PAD_LEFT) }}
-                    </span>
-                    <h3 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">{{ $chapter->title }}</h3>
-                    <p class="text-slate-300 text-base md:text-lg leading-relaxed">{{ $chapter->text }}</p>
-                </div>
-            </div>
-        @endforeach
-    </section>
-    @endif
-
     <!-- 4. LATEST ALBUMS -->
     <section id="gallery" class="py-32 px-6 bg-slate-50 dark:bg-slate-950">
         <div class="max-w-screen-xl mx-auto">
             <div class="text-center mb-20" x-data="{ show: false }" x-intersect.threshold.50="show = true">
-                <span class="inline-block py-2 px-4 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
-                    Gallery
-                </span>
+                <div class="inline-flex items-center gap-2 mb-6">
+                    <span class="w-8 h-px bg-blue-500"></span>
+                    <span class="text-blue-600 dark:text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">Gallery</span>
+                </div>
                 <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 transition-all duration-700 transform"
                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
                     Captured Moments
@@ -279,9 +313,10 @@
         <div class="max-w-screen-xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20">
                 <div>
-                    <span class="inline-block py-2 px-4 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold mb-4 tracking-widest uppercase">
-                        Organization
-                    </span>
+                    <div class="inline-flex items-center gap-2 mb-4">
+                        <span class="w-8 h-px bg-blue-500"></span>
+                        <span class="text-blue-600 dark:text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">Organization</span>
+                    </div>
                     <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">Meet the Leaders
                     </h2>
                     <p class="text-lg text-slate-500">The people working behind the scenes.</p>
@@ -306,7 +341,7 @@
                                         class="text-lg md:text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
                                         {{ $member->full_name }}</h3>
                                     <span
-                                        class="inline-block bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-xs font-bold px-3 py-1.5 rounded-full mt-2 uppercase tracking-wide border border-blue-100 dark:border-blue-800">
+                                        class="block text-blue-600 dark:text-blue-400 text-xs font-bold mt-1.5 uppercase tracking-[0.15em]">
                                         {{ $member->position }}
                                     </span>
                                 </div>
@@ -338,9 +373,11 @@
 
             <!-- Title -->
             <div class="text-center mb-20" x-data="{ show: false }" x-intersect="show = true">
-                <span class="inline-block py-2 px-4 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
-                    Community
-                </span>
+                <div class="inline-flex items-center justify-center gap-2 mb-6">
+                    <span class="w-8 h-px bg-blue-500"></span>
+                    <span class="text-blue-600 dark:text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">Community</span>
+                    <span class="w-8 h-px bg-blue-500"></span>
+                </div>
                 <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 transition-all duration-700 transform"
                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
                     Voices & Messages
@@ -406,5 +443,16 @@
                 animation: ken-burns 12s ease-out infinite alternate;
             }
         </style>
+    @endpush
+
+    @push('scripts')
+        <script>
+            function storyIntro(chapters) {
+                return {
+                    chapters: chapters,
+                    active: 0,
+                }
+            }
+        </script>
     @endpush
 </x-app-layout>
