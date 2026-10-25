@@ -5,19 +5,17 @@
     <div class="min-h-screen bg-slate-50 dark:bg-[#0B0F19] text-slate-900 dark:text-white font-sans overflow-x-hidden transition-colors duration-300">
 
         <!-- HEADER SECTION -->
-        <section class="relative pt-40 pb-12 px-6 overflow-hidden text-center" id="gallery-header">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
-                <div class="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blue-500/10 dark:bg-blue-900/20 rounded-full blur-[120px] opacity-50"></div>
-            </div>
-
+        <section class="relative pt-32 pb-8 px-6 overflow-hidden text-center" id="gallery-header">
             <div class="relative z-10 max-w-4xl mx-auto animate__animated animate__fadeInDown">
-                <span class="inline-block py-2 px-5 rounded-full bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-800 text-blue-600 dark:text-blue-400 text-[11px] font-bold tracking-[0.2em] uppercase mb-8 shadow-lg">
-                    Our Memories
-                </span>
-                <h1 class="text-6xl md:text-8xl font-bold text-slate-900 dark:text-white mb-6 tracking-tighter leading-none">
+                <div class="inline-flex items-center justify-center gap-2 mb-5">
+                    <span class="w-8 h-px bg-blue-500"></span>
+                    <span class="text-blue-600 dark:text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">Our Memories</span>
+                    <span class="w-8 h-px bg-blue-500"></span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
                     Visual <span class="text-blue-500">Diaries.</span>
                 </h1>
-                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed font-light">
+                <p class="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed font-light">
                     Koleksi momen berharga kami.
                 </p>
             </div>
@@ -41,42 +39,70 @@
                  x-transition:leave-end="opacity-0 -translate-x-10">
 
                 <!-- Toolbar Album -->
-                <div class="sticky top-24 z-30 mb-12 px-2 md:px-0 space-y-4">
-                    <!-- Search Bar -->
-                    <div class="relative max-w-xl mx-auto flex items-center px-5 h-14
-                                bg-white/90 dark:bg-[#1E293B]/90 border border-slate-200 dark:border-slate-700/50
-                                rounded-full shadow-xl backdrop-blur-xl ring-1 ring-slate-900/5 transition-all duration-300">
-                        <svg class="h-5 w-5 text-slate-400 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                        </svg>
-                        <input type="text"
-                               x-model="albumSearch"
-                               placeholder="Cari album kegiatan..."
-                               class="w-full bg-transparent border-none focus:ring-0 text-sm font-medium text-slate-900 dark:text-white placeholder-slate-500 p-0 focus:outline-none">
-                    </div>
+                <div class="sticky top-24 z-30 mb-12 px-2 md:px-0">
+                    <div class="bg-white/90 dark:bg-[#1E293B]/90 border border-slate-200 dark:border-slate-700/50
+                                rounded-3xl md:rounded-full shadow-xl
+                                flex flex-col md:flex-row items-center
+                                max-w-2xl mx-auto backdrop-blur-xl p-2 md:p-1.5 ring-1 ring-slate-900/5 transition-all duration-300">
 
-                    <!-- Category Chips -->
-                    <div class="flex flex-wrap items-center justify-center gap-2.5 px-1">
-                        <button type="button" @click="selectedCategoryId = 'all'"
-                                class="px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200"
-                                :class="selectedCategoryId === 'all'
-                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
-                                    : 'bg-white dark:bg-[#1E293B] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300 hover:text-blue-600'">
-                            Semua Album
-                        </button>
-                        <template x-for="cat in visibleCategoryChips" :key="cat.id">
-                            <button type="button" @click="selectedCategoryId = cat.id"
-                                    class="px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200"
-                                    :class="selectedCategoryId == cat.id
-                                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
-                                        : 'bg-white dark:bg-[#1E293B] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300 hover:text-blue-600'"
-                                    x-text="cat.name"></button>
-                        </template>
-                        <button type="button" x-show="categories.length > chipLimit" x-cloak
-                                @click="showAllCategoryChips = !showAllCategoryChips"
-                                class="px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200 bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400">
-                            <span x-text="showAllCategoryChips ? 'Tutup' : '+' + (categories.length - chipLimit) + ' Lainnya'"></span>
-                        </button>
+                        <!-- Search Bar -->
+                        <div class="relative flex-grow w-full md:w-auto flex items-center px-4 h-12 md:h-auto">
+                            <svg class="h-5 w-5 text-slate-400 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                            <input type="text"
+                                   x-model="albumSearch"
+                                   placeholder="Cari album kegiatan..."
+                                   class="w-full bg-transparent border-none focus:ring-0 text-sm font-medium text-slate-900 dark:text-white placeholder-slate-500 p-0 focus:outline-none">
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="w-full h-px bg-slate-100 dark:bg-slate-700/50 md:w-px md:h-8 md:bg-slate-200 md:dark:bg-slate-700 my-1 md:my-0 mx-0 md:mx-2"></div>
+
+                        <!-- Category Filter -->
+                        <div class="relative w-full md:w-auto min-w-[200px]" @click.away="categoryDropdownOpen = false">
+                            <button type="button"
+                                    @click="categoryDropdownOpen = !categoryDropdownOpen; categorySearch = ''; $nextTick(() => $refs.categorySearchInput?.focus())"
+                                    class="w-full h-12 md:h-auto flex items-center justify-between gap-3 pl-5 pr-4 py-2 rounded-xl text-sm font-bold text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors focus:outline-none">
+                                <span class="truncate" x-text="selectedCategoryId === 'all' ? 'Semua Album' : (categories.find(c => c.id == selectedCategoryId)?.name ?? 'Semua Album')"></span>
+                                <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 transition-transform duration-200 flex-shrink-0" :class="{ 'rotate-180': categoryDropdownOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+
+                            <div x-show="categoryDropdownOpen" x-cloak
+                                 x-transition:enter="transition ease-out duration-200"
+                                 x-transition:enter-start="opacity-0 scale-95 -translate-y-2"
+                                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                                 x-transition:leave="transition ease-in duration-150"
+                                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                                 x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
+                                 class="absolute right-0 left-0 md:left-auto mt-2 w-full md:w-72 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 z-40 overflow-hidden">
+                                <!-- Quick search, only really needed once there are many categories -->
+                                <div class="p-2 border-b border-slate-100 dark:border-slate-800" x-show="categories.length > 6">
+                                    <input type="text" x-model="categorySearch" x-ref="categorySearchInput"
+                                           placeholder="Cari kategori..."
+                                           class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 text-slate-700 dark:text-white placeholder-slate-400">
+                                </div>
+                                <div class="max-h-64 overflow-y-auto py-2">
+                                    <button type="button" @click="selectedCategoryId = 'all'; categoryDropdownOpen = false"
+                                            x-show="!categorySearch"
+                                            class="w-full text-left px-5 py-2.5 text-sm font-medium transition-colors"
+                                            :class="selectedCategoryId === 'all' ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'">
+                                        Semua Album
+                                    </button>
+                                    <template x-for="cat in filteredDropdownCategories" :key="cat.id">
+                                        <button type="button" @click="selectedCategoryId = cat.id; categoryDropdownOpen = false"
+                                                class="w-full text-left px-5 py-2.5 text-sm font-medium transition-colors truncate"
+                                                :class="selectedCategoryId == cat.id ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'"
+                                                x-text="cat.name"></button>
+                                    </template>
+                                    <p x-show="filteredDropdownCategories.length === 0" class="px-5 py-3 text-xs text-slate-400 text-center">
+                                        Kategori tidak ditemukan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -290,8 +316,8 @@
 
                 albumSearch: '',
                 selectedCategoryId: 'all',
-                chipLimit: 8,
-                showAllCategoryChips: false,
+                categoryDropdownOpen: false,
+                categorySearch: '',
                 photoSearch: '',
 
                 currentCatPage: 1,
@@ -378,8 +404,10 @@
                     }
                 },
 
-                get visibleCategoryChips() {
-                    return this.showAllCategoryChips ? this.categories : this.categories.slice(0, this.chipLimit);
+                get filteredDropdownCategories() {
+                    if (!this.categorySearch) return this.categories;
+                    const query = this.categorySearch.toLowerCase();
+                    return this.categories.filter(cat => cat.name.toLowerCase().includes(query));
                 },
 
                 get filteredCategories() {
