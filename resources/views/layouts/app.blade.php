@@ -33,11 +33,11 @@
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: #0d9488; /* Teal-600 */
+            background: #2563eb; /* Blue-600 */
             border-radius: 999px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #0f766e;
+            background: #1d4ed8; /* Blue-700 */
         }
 
         .no-scroll {
@@ -61,7 +61,7 @@
     </script>
 </head>
 
-<body class="font-sans antialiased bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 ease-in-out selection:bg-teal-500 selection:text-white no-scroll"
+<body class="font-sans antialiased bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 ease-in-out selection:bg-blue-500 selection:text-white no-scroll"
       x-data="{ loading: true }"
       x-init="setTimeout(() => { loading = false; document.body.classList.remove('no-scroll') }, 900)">
 
@@ -72,11 +72,11 @@
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 z-[100] flex items-center justify-center bg-white dark:bg-slate-950">
         <div class="text-center">
-            <div class="w-12 h-12 rounded-2xl bg-teal-600 text-white flex items-center justify-center font-bold text-xl shadow-brand mb-5 mx-auto animate-pulse">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-brand mb-5 mx-auto animate-pulse">
                 T
             </div>
             <div class="w-24 h-1 rounded-full bg-slate-100 dark:bg-slate-800 mx-auto overflow-hidden">
-                <div class="h-full w-1/2 bg-teal-600 rounded-full animate-[loading_1s_ease-in-out_infinite]"></div>
+                <div class="h-full w-1/2 bg-blue-600 rounded-full animate-[loading_1s_ease-in-out_infinite]"></div>
             </div>
         </div>
     </div>

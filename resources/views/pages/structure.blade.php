@@ -27,15 +27,15 @@
     <!-- HERO -->
     <section class="relative pt-40 pb-12 px-6 overflow-hidden text-center bg-slate-50 dark:bg-slate-950">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
-            <div class="absolute top-10 left-1/4 w-[500px] h-[500px] bg-teal-500/10 dark:bg-teal-900/20 rounded-full blur-[120px] opacity-50"></div>
+            <div class="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blue-500/10 dark:bg-blue-900/20 rounded-full blur-[120px] opacity-50"></div>
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto animate__animated animate__fadeInDown">
-            <span class="inline-block py-2 px-4 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-teal-600 dark:text-teal-400 text-xs font-bold mb-6 tracking-widest uppercase shadow-lg">
+            <span class="inline-block py-2 px-4 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-blue-600 dark:text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase shadow-lg">
                 Organization
             </span>
             <h1 class="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
-                Meet The <span class="text-teal-600">Team.</span>
+                Meet The <span class="text-blue-600">Team.</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 The dedicated individuals who lead, organize, and make everything possible for our class.
@@ -57,22 +57,22 @@
                             <div x-data="{ show: false }" x-intersect.once="show = true"
                                  :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
                                  class="relative group transition-all duration-700">
-                                <div class="relative bg-white dark:bg-slate-800 p-7 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 w-72 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-teal-900/10 hover:border-teal-500 dark:hover:border-teal-500 cursor-pointer"
+                                <div class="relative bg-white dark:bg-slate-800 p-7 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 w-72 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-900/10 hover:border-blue-500 dark:hover:border-blue-500 cursor-pointer"
                                      @click="openMember({{ \Illuminate\Support\Js::from(($toMemberJs)($leader)) }})">
 
                                     <div class="relative w-28 h-28 mx-auto mb-4">
-                                        <div class="absolute -inset-1 rounded-full bg-gradient-to-br from-teal-400 to-teal-700 opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                                        <div class="absolute -inset-1 rounded-full bg-gradient-to-br from-blue-400 to-blue-700 opacity-80 group-hover:opacity-100 transition-opacity"></div>
                                         <img src="{{ $leader->profile_image ? asset('storage/' . $leader->profile_image) : asset('images/default-avatar.png') }}"
                                              class="relative w-full h-full rounded-full object-cover object-center border-4 border-white dark:border-slate-800 transform transition-transform duration-500 group-hover:scale-105">
-                                        <div class="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-teal-600 border-4 border-white dark:border-slate-800 flex items-center justify-center shadow-md z-10">
+                                        <div class="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-blue-600 border-4 border-white dark:border-slate-800 flex items-center justify-center shadow-md z-10">
                                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $roleIcon($leader->position) }}"></path></svg>
                                         </div>
                                     </div>
 
-                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors">{{ $leader->full_name }}</h3>
-                                    <p class="text-teal-600 dark:text-teal-400 text-sm font-bold uppercase tracking-wider mt-1">{{ $leader->position }}</p>
+                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">{{ $leader->full_name }}</h3>
+                                    <p class="text-blue-600 dark:text-blue-400 text-sm font-bold uppercase tracking-wider mt-1">{{ $leader->position }}</p>
                                 </div>
-                                <div class="absolute left-1/2 -bottom-8 w-px h-8 bg-gradient-to-b from-teal-500/60 to-slate-300 dark:to-slate-700"></div>
+                                <div class="absolute left-1/2 -bottom-8 w-px h-8 bg-gradient-to-b from-blue-500/60 to-slate-300 dark:to-slate-700"></div>
                             </div>
                         @endif
                     @endforeach
@@ -83,9 +83,9 @@
                     <div class="absolute left-1/2 -top-8 w-px h-8 bg-slate-300 dark:bg-slate-700 -translate-x-1/2"></div>
                     <div class="absolute left-0 top-0 w-px h-8 bg-slate-300 dark:bg-slate-700"></div>
                     <div class="absolute right-0 top-0 w-px h-8 bg-slate-300 dark:bg-slate-700"></div>
-                    <div class="absolute left-1/2 -top-8 -translate-x-1/2 w-2 h-2 rounded-full bg-teal-500"></div>
-                    <div class="absolute left-0 top-0 -translate-x-1/2 w-2 h-2 rounded-full bg-teal-500"></div>
-                    <div class="absolute right-0 top-0 translate-x-1/2 w-2 h-2 rounded-full bg-teal-500"></div>
+                    <div class="absolute left-1/2 -top-8 -translate-x-1/2 w-2 h-2 rounded-full bg-blue-500"></div>
+                    <div class="absolute left-0 top-0 -translate-x-1/2 w-2 h-2 rounded-full bg-blue-500"></div>
+                    <div class="absolute right-0 top-0 translate-x-1/2 w-2 h-2 rounded-full bg-blue-500"></div>
                 </div>
 
                 <!-- 2. SEKRETARIS & BENDAHARA -->
@@ -99,20 +99,20 @@
                                          class="relative group transition-all duration-700">
                                         <div class="absolute left-1/2 -top-8 w-px h-8 bg-slate-300 dark:bg-slate-700 md:hidden"></div>
 
-                                        <div class="relative bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 w-64 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-teal-500 cursor-pointer"
+                                        <div class="relative bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 w-64 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-blue-500 cursor-pointer"
                                              @click="openMember({{ \Illuminate\Support\Js::from(($toMemberJs)($leader)) }})">
 
                                             <div class="relative w-20 h-20 mx-auto mb-4">
-                                                <div class="absolute -inset-1 rounded-full bg-gradient-to-br from-teal-300 to-teal-600 opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                                                <div class="absolute -inset-1 rounded-full bg-gradient-to-br from-blue-300 to-blue-600 opacity-70 group-hover:opacity-100 transition-opacity"></div>
                                                 <img src="{{ $leader->profile_image ? asset('storage/' . $leader->profile_image) : asset('images/default-avatar.png') }}"
                                                      class="relative w-full h-full object-cover object-center rounded-full border-4 border-white dark:border-slate-800 transform group-hover:scale-105 transition-transform duration-500">
-                                                <div class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-teal-600 border-4 border-white dark:border-slate-800 flex items-center justify-center shadow-md z-10">
+                                                <div class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-blue-600 border-4 border-white dark:border-slate-800 flex items-center justify-center shadow-md z-10">
                                                     <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $roleIcon($leader->position) }}"></path></svg>
                                                 </div>
                                             </div>
 
-                                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors">{{ $leader->full_name }}</h3>
-                                            <p class="text-teal-600 dark:text-teal-400 text-xs font-bold uppercase tracking-wider mt-1">{{ $leader->position }}</p>
+                                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">{{ $leader->full_name }}</h3>
+                                            <p class="text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mt-1">{{ $leader->position }}</p>
                                         </div>
                                     </div>
                                 @endif
@@ -127,7 +127,7 @@
         <section class="pb-32 px-6 bg-white dark:bg-slate-950">
             <div class="max-w-screen-xl mx-auto">
                 <div class="text-center mb-12">
-                    <span class="inline-block py-2 px-4 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-xs font-bold mb-4 tracking-widest uppercase">
+                    <span class="inline-block py-2 px-4 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold mb-4 tracking-widest uppercase">
                         Members
                     </span>
                     <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">All Class Members</h2>
@@ -150,30 +150,46 @@
 
                         <div class="w-full h-px bg-slate-100 dark:bg-slate-700/50 md:w-px md:h-8 md:bg-slate-200 md:dark:bg-slate-700 my-1 md:my-0 mx-0 md:mx-2"></div>
 
-                        <div class="relative w-full md:w-auto min-w-[200px]">
-                            <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500 dark:text-slate-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                        <div class="relative w-full md:w-auto min-w-[200px]" @click.away="programDropdownOpen = false">
+                            <button type="button" @click="programDropdownOpen = !programDropdownOpen"
+                                    class="w-full h-12 md:h-auto flex items-center justify-between gap-3 pl-5 pr-4 py-2 rounded-xl text-sm font-bold text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors focus:outline-none">
+                                <span x-text="programFilter === 'all' ? 'Semua Prodi' : programFilter"></span>
+                                <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 transition-transform duration-200 flex-shrink-0" :class="{ 'rotate-180': programDropdownOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                 </svg>
-                            </div>
-                            <select x-model="programFilter"
-                                    class="w-full h-12 md:h-auto pl-5 pr-12 py-2 bg-transparent border-none focus:ring-0 rounded-xl text-sm font-bold text-slate-700 dark:text-white appearance-none cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-left md:text-right focus:outline-none">
-                                <option value="all">Semua Prodi</option>
+                            </button>
+
+                            <div x-show="programDropdownOpen" x-cloak
+                                 x-transition:enter="transition ease-out duration-200"
+                                 x-transition:enter-start="opacity-0 scale-95 -translate-y-2"
+                                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                                 x-transition:leave="transition ease-in duration-150"
+                                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                                 x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
+                                 class="absolute right-0 left-0 md:left-auto mt-2 w-full md:w-64 max-h-72 overflow-y-auto bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 z-40 py-2">
+                                <button type="button" @click="programFilter = 'all'; programDropdownOpen = false"
+                                        class="w-full text-left px-5 py-2.5 text-sm font-medium transition-colors"
+                                        :class="programFilter === 'all' ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'">
+                                    Semua Prodi
+                                </button>
                                 <template x-for="program in programs" :key="program">
-                                    <option :value="program" x-text="program"></option>
+                                    <button type="button" @click="programFilter = program; programDropdownOpen = false"
+                                            class="w-full text-left px-5 py-2.5 text-sm font-medium transition-colors"
+                                            :class="programFilter === program ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'"
+                                            x-text="program"></button>
                                 </template>
-                            </select>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                     <template x-for="member in filteredMembers" :key="member.id">
-                        <div class="group bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-teal-500 cursor-pointer transition-all text-center"
+                        <div class="group bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-500 cursor-pointer transition-all text-center"
                              @click="openMember(member)">
                             <div class="relative w-16 h-16 mx-auto mb-3 rounded-full overflow-hidden">
                                 <img :src="member.profile_image_url"
-                                     class="w-full h-full object-cover object-center border-2 border-slate-100 dark:border-slate-700 group-hover:border-teal-500 transition-colors rounded-full">
+                                     class="w-full h-full object-cover object-center border-2 border-slate-100 dark:border-slate-700 group-hover:border-blue-500 transition-colors rounded-full">
                             </div>
                             <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate" x-text="member.full_name"></h4>
                             <p class="text-xs text-slate-500 dark:text-slate-400 truncate" x-text="member.study_program"></p>
@@ -203,7 +219,7 @@
                      x-transition:leave-start="opacity-100 scale-100"
                      x-transition:leave-end="opacity-0 scale-95">
 
-                    <div class="h-32 bg-gradient-to-r from-teal-500 to-teal-800 relative">
+                    <div class="h-32 bg-gradient-to-r from-blue-500 to-blue-800 relative">
                         <button @click="closeMember()" class="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-colors z-20">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
@@ -223,7 +239,7 @@
 
                         <div class="mt-4">
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white" x-text="selectedMember.full_name"></h3>
-                            <span class="inline-block bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300 text-xs px-2 py-1 rounded font-bold uppercase tracking-wide mt-1" x-text="selectedMember.position"></span>
+                            <span class="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs px-2 py-1 rounded font-bold uppercase tracking-wide mt-1" x-text="selectedMember.position"></span>
                         </div>
 
                         <div class="mt-6 space-y-4">
@@ -249,7 +265,7 @@
 
                             <div class="flex gap-2 flex-wrap mt-4" x-show="selectedMember.social_media_links">
                                 <template x-for="(url, platform) in (selectedMember.social_media_links || {})" :key="platform">
-                                    <a :href="url" target="_blank" class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-teal-500 hover:text-white transition-colors text-sm font-medium capitalize" x-text="platform"></a>
+                                    <a :href="url" target="_blank" class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-blue-500 hover:text-white transition-colors text-sm font-medium capitalize" x-text="platform"></a>
                                 </template>
                             </div>
                         </div>
@@ -280,6 +296,7 @@
                 members: members,
                 search: '',
                 programFilter: 'all',
+                programDropdownOpen: false,
                 selectedMember: null,
                 lightboxImage: null,
 

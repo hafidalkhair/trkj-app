@@ -28,7 +28,7 @@
             <h1
                 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight animate__animated animate__fadeInUp animate__delay-1s drop-shadow-2xl">
                 Creating Memories <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-100">Building
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-100">Building
                     Futures.</span>
             </h1>
 
@@ -41,7 +41,7 @@
             <div
                 class="flex flex-col sm:flex-row gap-4 justify-center animate__animated animate__fadeInUp animate__delay-3s px-4">
                 <a href="{{ route('gallery') }}"
-                    class="group relative w-full sm:w-auto px-8 py-4 bg-teal-600 rounded-full text-white font-semibold overflow-hidden shadow-xl shadow-teal-600/30 transition-all hover:scale-105 hover:shadow-teal-600/50">
+                    class="group relative w-full sm:w-auto px-8 py-4 bg-blue-600 rounded-full text-white font-semibold overflow-hidden shadow-xl shadow-blue-600/30 transition-all hover:scale-105 hover:shadow-blue-600/50">
                     <span class="relative z-10 flex items-center justify-center">
                         Explore Gallery
                         <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
@@ -51,7 +51,7 @@
                         </svg>
                     </span>
                     <div
-                        class="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-teal-700/50">
+                        class="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-blue-700/50">
                     </div>
                 </a>
                 <a href="{{ route('structure') }}"
@@ -77,7 +77,7 @@
 
             <!-- ESTABLISHED -->
             <div class="p-2">
-                <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400">{{ 2023 }}</h3>
+                <h3 class="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">{{ 2023 }}</h3>
                 <p class="text-xs md:text-sm text-slate-500 uppercase tracking-widest font-bold mt-2">Angkatan</p>
             </div>
 
@@ -86,7 +86,7 @@
 
             <!-- MEMBERS (DIPERBAIKI) -->
             <div class="p-2" x-data="{ current: 0, target: {{ $totalMembers }} }">
-                <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400"
+                <h3 class="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400"
                     x-intersect.once="
                         $nextTick(() => {
                             const duration = 2000; // Durasi animasi 2 detik
@@ -115,7 +115,7 @@
 
             <!-- ALBUMS (DIPERBAIKI JUGA AGAR KONSISTEN) -->
             <div class="p-2" x-data="{ current: 0, target: {{ $totalCategories }} }">
-                <h3 class="text-4xl md:text-5xl font-bold text-teal-600 dark:text-teal-400"
+                <h3 class="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400"
                     x-intersect.once="
                         $nextTick(() => {
                             const duration = 2000;
@@ -148,14 +148,14 @@
     <section id="gallery" class="py-32 px-6 bg-slate-50 dark:bg-slate-950">
         <div class="max-w-screen-xl mx-auto">
             <div class="text-center mb-20" x-data="{ show: false }" x-intersect.threshold.50="show = true">
-                <span class="inline-block py-2 px-4 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-xs font-bold mb-6 tracking-widest uppercase">
+                <span class="inline-block py-2 px-4 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
                     Gallery
                 </span>
                 <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 transition-all duration-700 transform"
                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
                     Captured Moments
                 </h2>
-                <div class="w-24 h-1.5 bg-teal-500 mx-auto rounded-full mb-8 transition-all duration-700 delay-100 transform"
+                <div class="w-24 h-1.5 bg-blue-500 mx-auto rounded-full mb-8 transition-all duration-700 delay-100 transform"
                     :class="show ? 'w-24 opacity-100' : 'w-0 opacity-0'"></div>
                 <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto transition-all duration-700 delay-200 transform leading-relaxed"
                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
@@ -165,7 +165,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($latestPhotos as $index => $category)
-                    <div class="group relative w-full aspect-[4/3] rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-teal-900/20 border border-slate-200 dark:border-slate-800"
+                    <div class="group relative w-full aspect-[4/3] rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-blue-900/20 border border-slate-200 dark:border-slate-800"
                         x-data="{ show: false }" x-intersect.threshold.20="show = true"
                         :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'"
                         style="transition-delay: {{ $index * 100 }}ms">
@@ -182,7 +182,7 @@
                             <div
                                 class="flex items-center gap-3 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                                 <span
-                                    class="bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">NEW</span>
+                                    class="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">NEW</span>
                                 <span
                                     class="text-slate-200 text-xs uppercase tracking-widest font-semibold">{{ $category->created_at->format('M Y') }}</span>
                             </div>
@@ -193,7 +193,7 @@
                                 {{ $category->description }}
                             </p>
                             <a href="{{ route('gallery') }}"
-                                class="inline-flex items-center text-teal-300 font-bold tracking-wide group-hover:text-teal-200 transition-colors">
+                                class="inline-flex items-center text-blue-300 font-bold tracking-wide group-hover:text-blue-200 transition-colors">
                                 VIEW ALBUM <svg
                                     class="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,15 +209,15 @@
     </section>
 
     <!-- 4. QUOTE SECTION -->
-    <section class="py-32 md:py-40 relative bg-teal-900 overflow-hidden flex items-center justify-center">
+    <section class="py-32 md:py-40 relative bg-blue-900 overflow-hidden flex items-center justify-center">
         <div
-            class="absolute top-0 right-0 -mr-32 -mt-32 w-[20rem] md:w-[32rem] h-[20rem] md:h-[32rem] rounded-full bg-teal-500/20 blur-3xl animate-pulse">
+            class="absolute top-0 right-0 -mr-32 -mt-32 w-[20rem] md:w-[32rem] h-[20rem] md:h-[32rem] rounded-full bg-blue-500/20 blur-3xl animate-pulse">
         </div>
-        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-[18rem] md:w-[28rem] h-[18rem] md:h-[28rem] rounded-full bg-teal-300/10 blur-3xl animate-pulse"
+        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-[18rem] md:w-[28rem] h-[18rem] md:h-[28rem] rounded-full bg-blue-300/10 blur-3xl animate-pulse"
             style="animation-duration: 4s"></div>
 
         <div class="max-w-5xl mx-auto px-6 text-center relative z-10" x-data="{ show: false }" x-intersect="show = true">
-            <svg class="w-16 h-16 md:w-20 md:h-20 text-teal-400/40 mx-auto mb-8 md:mb-12" fill="currentColor"
+            <svg class="w-16 h-16 md:w-20 md:h-20 text-blue-400/40 mx-auto mb-8 md:mb-12" fill="currentColor"
                 viewBox="0 0 24 24">
                 <path
                     d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.01697 21L5.01697 18C5.01697 16.8954 5.9124 16 7.01697 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.01697C5.46468 8 5.01697 8.44772 5.01697 9V11C5.01697 11.5523 4.56925 12 4.01697 12H3.01697V5H13.017V15C13.017 18.3137 10.3307 21 7.01697 21H5.01697Z">
@@ -232,10 +232,10 @@
 
             <div class="flex items-center justify-center gap-6 transition-all duration-1000 delay-300"
                 :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-                <div class="w-12 md:w-16 h-px bg-teal-400/50"></div>
-                <span class="text-teal-200 font-bold tracking-[0.2em] uppercase text-xs md:text-sm">Class
+                <div class="w-12 md:w-16 h-px bg-blue-400/50"></div>
+                <span class="text-blue-200 font-bold tracking-[0.2em] uppercase text-xs md:text-sm">Class
                     Representative</span>
-                <div class="w-12 md:w-16 h-px bg-teal-400/50"></div>
+                <div class="w-12 md:w-16 h-px bg-blue-400/50"></div>
             </div>
         </div>
     </section>
@@ -245,7 +245,7 @@
         <div class="max-w-screen-xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20">
                 <div>
-                    <span class="inline-block py-2 px-4 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-xs font-bold mb-4 tracking-widest uppercase">
+                    <span class="inline-block py-2 px-4 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold mb-4 tracking-widest uppercase">
                         Organization
                     </span>
                     <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">Meet the Leaders
@@ -257,22 +257,22 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 @foreach ($members as $member)
                     @if (in_array($member->position, ['komisaris', 'sekretaris', 'bendahara']))
-                        <div class="group bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:border-teal-200 dark:hover:border-teal-800 transition-all duration-300"
+                        <div class="group bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300"
                             x-data="{ show: false }" x-intersect="show = true"
                             :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
                             <div class="flex items-center gap-6">
                                 <div
-                                    class="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-teal-50 dark:border-teal-900 group-hover:border-teal-500 transition-colors shadow-md shrink-0">
+                                    class="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-blue-50 dark:border-blue-900 group-hover:border-blue-500 transition-colors shadow-md shrink-0">
                                     <img src="{{ $member->profile_image ? asset('storage/' . $member->profile_image) : asset('images/default-avatar.png') }}"
                                         class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-500"
                                         alt="Leader">
                                 </div>
                                 <div>
                                     <h3
-                                        class="text-lg md:text-xl font-bold text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors">
+                                        class="text-lg md:text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
                                         {{ $member->full_name }}</h3>
                                     <span
-                                        class="inline-block bg-teal-50 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 text-xs font-bold px-3 py-1.5 rounded-full mt-2 uppercase tracking-wide border border-teal-100 dark:border-teal-800">
+                                        class="inline-block bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-xs font-bold px-3 py-1.5 rounded-full mt-2 uppercase tracking-wide border border-blue-100 dark:border-blue-800">
                                         {{ $member->position }}
                                     </span>
                                 </div>
@@ -285,10 +285,10 @@
                     @endif
                 @endforeach
                 <a href="{{ route('structure') }}"
-                    class="group text-teal-600 font-bold text-lg hover:text-teal-800 mt-8 md:mt-0 flex items-center transition-colors">
+                    class="group text-blue-600 font-bold text-lg hover:text-blue-800 mt-8 md:mt-0 flex items-center transition-colors">
                     See Full Structure
                     <span
-                        class="bg-teal-100 dark:bg-teal-900 p-2 rounded-full ml-3 group-hover:bg-teal-200 transition-colors">
+                        class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full ml-3 group-hover:bg-blue-200 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -304,14 +304,14 @@
 
             <!-- Title -->
             <div class="text-center mb-20" x-data="{ show: false }" x-intersect="show = true">
-                <span class="inline-block py-2 px-4 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-xs font-bold mb-6 tracking-widest uppercase">
+                <span class="inline-block py-2 px-4 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
                     Community
                 </span>
                 <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 transition-all duration-700 transform"
                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
                     Voices & Messages
                 </h2>
-                <div class="w-24 h-1.5 bg-teal-500 mx-auto rounded-full mb-8 transition-all duration-700 delay-100 transform"
+                <div class="w-24 h-1.5 bg-blue-500 mx-auto rounded-full mb-8 transition-all duration-700 delay-100 transform"
                     :class="show ? 'w-24 opacity-100' : 'w-0 opacity-0'"></div>
                 <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto transition-all duration-700 delay-200 transform leading-relaxed"
                     :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
@@ -327,7 +327,7 @@
 
                         <div class="flex items-center gap-4 mb-6">
                             <div
-                                class="w-12 h-12 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold shadow">
+                                class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shadow">
                                 {{ strtoupper(substr($msg->name, 0, 1)) }}
                             </div>
 
@@ -338,7 +338,7 @@
                         </div>
 
                         <span
-                            class="inline-block bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow mb-4">
+                            class="inline-block bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow mb-4">
                             {{ $msg->subject }}
                         </span>
 

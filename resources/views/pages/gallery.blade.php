@@ -7,15 +7,15 @@
         <!-- HEADER SECTION -->
         <section class="relative pt-40 pb-12 px-6 overflow-hidden text-center" id="gallery-header">
             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
-                <div class="absolute top-10 left-1/4 w-[500px] h-[500px] bg-teal-500/10 dark:bg-teal-900/20 rounded-full blur-[120px] opacity-50"></div>
+                <div class="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blue-500/10 dark:bg-blue-900/20 rounded-full blur-[120px] opacity-50"></div>
             </div>
 
             <div class="relative z-10 max-w-4xl mx-auto animate__animated animate__fadeInDown">
-                <span class="inline-block py-2 px-5 rounded-full bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-800 text-teal-600 dark:text-teal-400 text-[11px] font-bold tracking-[0.2em] uppercase mb-8 shadow-lg">
+                <span class="inline-block py-2 px-5 rounded-full bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-800 text-blue-600 dark:text-blue-400 text-[11px] font-bold tracking-[0.2em] uppercase mb-8 shadow-lg">
                     Our Memories
                 </span>
                 <h1 class="text-6xl md:text-8xl font-bold text-slate-900 dark:text-white mb-6 tracking-tighter leading-none">
-                    Visual <span class="text-teal-500">Diaries.</span>
+                    Visual <span class="text-blue-500">Diaries.</span>
                 </h1>
                 <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed font-light">
                     Koleksi momen berharga kami.
@@ -62,19 +62,35 @@
                         <div class="w-full h-px bg-slate-100 dark:bg-slate-700/50 md:w-px md:h-8 md:bg-slate-200 md:dark:bg-slate-700 my-1 md:my-0 mx-0 md:mx-2"></div>
 
                         <!-- Filter Dropdown -->
-                        <div class="relative w-full md:w-auto min-w-[220px]">
-                            <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500 dark:text-slate-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                        <div class="relative w-full md:w-auto min-w-[220px]" @click.away="categoryDropdownOpen = false">
+                            <button type="button" @click="categoryDropdownOpen = !categoryDropdownOpen"
+                                    class="w-full h-12 md:h-auto flex items-center justify-between gap-3 pl-5 pr-4 py-2 rounded-xl text-sm font-bold text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors focus:outline-none">
+                                <span x-text="selectedCategoryId === 'all' ? 'Semua Album' : (categories.find(c => c.id == selectedCategoryId)?.name ?? 'Semua Album')" class="truncate"></span>
+                                <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 transition-transform duration-200 flex-shrink-0" :class="{ 'rotate-180': categoryDropdownOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                 </svg>
-                            </div>
-                            <select x-model="selectedCategoryId"
-                                    class="w-full h-12 md:h-auto pl-5 pr-12 py-2 bg-transparent border-none focus:ring-0 rounded-xl text-sm font-bold text-slate-700 dark:text-white appearance-none cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors text-left md:text-right focus:outline-none">
-                                <option value="all" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Semua Album</option>
+                            </button>
+
+                            <div x-show="categoryDropdownOpen" x-cloak
+                                 x-transition:enter="transition ease-out duration-200"
+                                 x-transition:enter-start="opacity-0 scale-95 -translate-y-2"
+                                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                                 x-transition:leave="transition ease-in duration-150"
+                                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                                 x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
+                                 class="absolute right-0 left-0 md:left-auto mt-2 w-full md:w-72 max-h-72 overflow-y-auto bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 z-40 py-2">
+                                <button type="button" @click="selectedCategoryId = 'all'; categoryDropdownOpen = false"
+                                        class="w-full text-left px-5 py-2.5 text-sm font-medium transition-colors"
+                                        :class="selectedCategoryId === 'all' ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'">
+                                    Semua Album
+                                </button>
                                 <template x-for="cat in categories" :key="cat.id">
-                                    <option :value="cat.id" x-text="cat.name" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white"></option>
+                                    <button type="button" @click="selectedCategoryId = cat.id; categoryDropdownOpen = false"
+                                            class="w-full text-left px-5 py-2.5 text-sm font-medium transition-colors truncate"
+                                            :class="selectedCategoryId == cat.id ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'"
+                                            x-text="cat.name"></button>
                                 </template>
-                            </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,7 +99,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-2">
                     <template x-for="category in paginatedCategories" :key="category.id">
                         <div @click="openCategory(category)"
-                             class="group cursor-pointer relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10">
+                             class="group cursor-pointer relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10">
 
                             <!-- Image Area -->
                             <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
@@ -96,10 +112,10 @@
                             </div>
 
                             <div class="flex flex-col gap-2 p-5">
-                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-teal-500 transition-colors line-clamp-1" x-text="category.name"></h3>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors line-clamp-1" x-text="category.name"></h3>
                                 <div class="flex items-center justify-between mt-1 pt-3 border-t border-slate-100 dark:border-slate-800">
                                     <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 w-2/3" x-text="category.description || 'Album Kegiatan'"></p>
-                                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-teal-500 flex items-center gap-1 transition-colors">
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-blue-500 flex items-center gap-1 transition-colors">
                                         LIHAT <span class="text-sm">&rarr;</span>
                                     </span>
                                 </div>
@@ -150,8 +166,8 @@
                 <!-- Toolbar Foto -->
                 <div class="sticky top-24 z-30 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between bg-white/80 dark:bg-[#1E293B]/95 backdrop-blur-md p-3 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-lg ring-1 ring-slate-900/5">
                     <button @click="closeCategory()"
-                            class="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-all font-bold uppercase text-[11px] tracking-widest pl-2 pr-4 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">
-                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center border border-slate-200 dark:border-slate-700 group-hover:border-teal-500">
+                            class="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all font-bold uppercase text-[11px] tracking-widest pl-2 pr-4 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">
+                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center border border-slate-200 dark:border-slate-700 group-hover:border-blue-500">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         </div>
                         Kembali
@@ -165,7 +181,7 @@
                     <div class="relative w-full md:w-64">
                         <svg class="absolute left-3 top-2.5 h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         <input type="text" x-model="photoSearch" placeholder="Cari caption..."
-                               class="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-xs focus:border-teal-500 focus:ring-0 transition-all text-slate-700 dark:text-white placeholder-slate-500">
+                               class="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-xs focus:border-blue-500 focus:ring-0 transition-all text-slate-700 dark:text-white placeholder-slate-500">
                     </div>
                 </div>
 
@@ -180,7 +196,7 @@
                             <!-- Overlay Hover (PERBAIKAN 1: Drop Shadow pada Teks) -->
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 md:p-6">
                                 <div class="w-full">
-                                    <div class="h-0.5 w-8 bg-teal-500 mb-2 shadow-sm"></div>
+                                    <div class="h-0.5 w-8 bg-blue-500 mb-2 shadow-sm"></div>
                                     <!-- Tambahan drop-shadow-md agar jelas di light mode -->
                                     <p class="text-white text-xs md:text-sm font-bold line-clamp-2 leading-relaxed drop-shadow-md" x-text="photo.caption || 'Tanpa caption'"></p>
                                     <p class="text-slate-200 text-[8px] md:text-[10px] uppercase tracking-wider mt-1 drop-shadow-sm" x-text="formatDate(photo.event_date)"></p>
@@ -263,7 +279,7 @@
                         <!-- Info Caption (Warna adaptif) -->
                         <div class="absolute top-6 left-6 z-[140] max-w-xl transition-opacity duration-300 px-4 md:px-0" :class="{'opacity-0': scale > 1}">
                             <p class="text-slate-900 dark:text-white text-lg md:text-xl font-bold leading-tight drop-shadow-sm" x-text="currentSlideData.caption"></p>
-                            <p class="text-teal-600 dark:text-teal-400 text-[10px] md:text-xs font-mono uppercase tracking-wider mt-1" x-text="formatDate(currentSlideData.event_date)"></p>
+                            <p class="text-blue-600 dark:text-blue-400 text-[10px] md:text-xs font-mono uppercase tracking-wider mt-1" x-text="formatDate(currentSlideData.event_date)"></p>
                         </div>
 
                         <div class="transition-transform duration-100 ease-out origin-center"
@@ -288,6 +304,7 @@
 
                 albumSearch: '',
                 selectedCategoryId: 'all',
+                categoryDropdownOpen: false,
                 photoSearch: '',
 
                 currentCatPage: 1,
