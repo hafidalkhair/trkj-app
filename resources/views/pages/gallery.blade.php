@@ -41,84 +41,66 @@
                  x-transition:leave-end="opacity-0 -translate-x-10">
 
                 <!-- Toolbar Album -->
-                <div class="sticky top-24 z-30 mb-14 px-2 md:px-0">
-                    <div class="bg-white/90 dark:bg-[#1E293B]/90 border border-slate-200 dark:border-slate-700/50
-                                rounded-3xl md:rounded-full shadow-2xl
-                                flex flex-col md:flex-row items-center
-                                max-w-3xl mx-auto backdrop-blur-xl p-2 md:p-1.5 ring-1 ring-slate-900/5 transition-all duration-300">
+                <div class="sticky top-24 z-30 mb-12 px-2 md:px-0 space-y-4">
+                    <!-- Search Bar -->
+                    <div class="relative max-w-xl mx-auto flex items-center px-5 h-14
+                                bg-white/90 dark:bg-[#1E293B]/90 border border-slate-200 dark:border-slate-700/50
+                                rounded-full shadow-xl backdrop-blur-xl ring-1 ring-slate-900/5 transition-all duration-300">
+                        <svg class="h-5 w-5 text-slate-400 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                        <input type="text"
+                               x-model="albumSearch"
+                               placeholder="Cari album kegiatan..."
+                               class="w-full bg-transparent border-none focus:ring-0 text-sm font-medium text-slate-900 dark:text-white placeholder-slate-500 p-0 focus:outline-none">
+                    </div>
 
-                        <!-- Search Bar -->
-                        <div class="relative flex-grow w-full md:w-auto flex items-center px-4 h-12 md:h-auto">
-                            <svg class="h-5 w-5 text-slate-400 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                            </svg>
-                            <input type="text"
-                                   x-model="albumSearch"
-                                   placeholder="Cari album kegiatan..."
-                                   class="w-full bg-transparent border-none focus:ring-0 text-sm font-medium text-slate-900 dark:text-white placeholder-slate-500 p-0 focus:outline-none">
-                        </div>
-
-                        <!-- Divider -->
-                        <div class="w-full h-px bg-slate-100 dark:bg-slate-700/50 md:w-px md:h-8 md:bg-slate-200 md:dark:bg-slate-700 my-1 md:my-0 mx-0 md:mx-2"></div>
-
-                        <!-- Filter Dropdown -->
-                        <div class="relative w-full md:w-auto min-w-[220px]" @click.away="categoryDropdownOpen = false">
-                            <button type="button" @click="categoryDropdownOpen = !categoryDropdownOpen"
-                                    class="w-full h-12 md:h-auto flex items-center justify-between gap-3 pl-5 pr-4 py-2 rounded-xl text-sm font-bold text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors focus:outline-none">
-                                <span x-text="selectedCategoryId === 'all' ? 'Semua Album' : (categories.find(c => c.id == selectedCategoryId)?.name ?? 'Semua Album')" class="truncate"></span>
-                                <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 transition-transform duration-200 flex-shrink-0" :class="{ 'rotate-180': categoryDropdownOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-
-                            <div x-show="categoryDropdownOpen" x-cloak
-                                 x-transition:enter="transition ease-out duration-200"
-                                 x-transition:enter-start="opacity-0 scale-95 -translate-y-2"
-                                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                                 x-transition:leave="transition ease-in duration-150"
-                                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-                                 x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
-                                 class="absolute right-0 left-0 md:left-auto mt-2 w-full md:w-72 max-h-72 overflow-y-auto bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 z-40 py-2">
-                                <button type="button" @click="selectedCategoryId = 'all'; categoryDropdownOpen = false"
-                                        class="w-full text-left px-5 py-2.5 text-sm font-medium transition-colors"
-                                        :class="selectedCategoryId === 'all' ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'">
-                                    Semua Album
-                                </button>
-                                <template x-for="cat in categories" :key="cat.id">
-                                    <button type="button" @click="selectedCategoryId = cat.id; categoryDropdownOpen = false"
-                                            class="w-full text-left px-5 py-2.5 text-sm font-medium transition-colors truncate"
-                                            :class="selectedCategoryId == cat.id ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'"
-                                            x-text="cat.name"></button>
-                                </template>
-                            </div>
-                        </div>
+                    <!-- Category Chips -->
+                    <div class="flex items-center gap-2.5 overflow-x-auto scrollbar-hide px-1 py-1">
+                        <button type="button" @click="selectedCategoryId = 'all'"
+                                class="flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200"
+                                :class="selectedCategoryId === 'all'
+                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+                                    : 'bg-white dark:bg-[#1E293B] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300 hover:text-blue-600'">
+                            Semua Album
+                        </button>
+                        <template x-for="cat in categories" :key="cat.id">
+                            <button type="button" @click="selectedCategoryId = cat.id"
+                                    class="flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-200"
+                                    :class="selectedCategoryId == cat.id
+                                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+                                        : 'bg-white dark:bg-[#1E293B] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300 hover:text-blue-600'"
+                                    x-text="cat.name"></button>
+                        </template>
                     </div>
                 </div>
 
-                <!-- Grid Album -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-2">
-                    <template x-for="category in paginatedCategories" :key="category.id">
+                <!-- Grid Album (Bento) -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 auto-rows-[160px] sm:auto-rows-[180px] lg:auto-rows-[210px] gap-4 md:gap-6 px-2">
+                    <template x-for="(category, idx) in paginatedCategories" :key="category.id">
                         <div @click="openCategory(category)"
-                             class="group cursor-pointer relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10">
+                             class="group cursor-pointer relative overflow-hidden rounded-3xl bg-slate-200 dark:bg-slate-800 shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10"
+                             :class="idx === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'">
 
-                            <!-- Image Area -->
-                            <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
-                                <img :src="getCategoryCover(category)"
-                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-95 group-hover:opacity-100">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60"></div>
-                                <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md border border-white/10 text-white px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider shadow-sm">
-                                    <span x-text="category.photos_count"></span> FOTO
-                                </div>
+                            <img :src="getCategoryCover(category)"
+                                 class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"></div>
+
+                            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-md border border-white/10 text-white px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider">
+                                <span x-text="category.photos_count"></span> FOTO
                             </div>
 
-                            <div class="flex flex-col gap-2 p-5">
-                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors line-clamp-1" x-text="category.name"></h3>
-                                <div class="flex items-center justify-between mt-1 pt-3 border-t border-slate-100 dark:border-slate-800">
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 w-2/3" x-text="category.description || 'Album Kegiatan'"></p>
-                                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-blue-500 flex items-center gap-1 transition-colors">
-                                        LIHAT <span class="text-sm">&rarr;</span>
-                                    </span>
-                                </div>
+                            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5" :class="idx === 0 ? 'md:p-7' : ''">
+                                <h3 class="font-bold text-white leading-tight line-clamp-2 drop-shadow-sm"
+                                    :class="idx === 0 ? 'text-2xl md:text-3xl mb-2' : 'text-sm md:text-base'"
+                                    x-text="category.name"></h3>
+                                <template x-if="idx === 0">
+                                    <p class="text-slate-200 text-sm line-clamp-2 drop-shadow-sm max-w-md mb-3" x-text="category.description || 'Album Kegiatan'"></p>
+                                </template>
+                                <span class="inline-flex items-center gap-1 text-blue-300 font-bold uppercase tracking-widest transition-all duration-300"
+                                      :class="idx === 0 ? 'text-xs' : 'text-[10px] opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0'">
+                                    Lihat Album <span>&rarr;</span>
+                                </span>
                             </div>
                         </div>
                     </template>
@@ -185,19 +167,18 @@
                     </div>
                 </div>
 
-                <!-- Grid Foto (UPDATED: 2 KOLOM DI MOBILE) -->
-                <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 px-2">
+                <!-- Grid Foto (Masonry) -->
+                <div class="columns-2 md:columns-3 gap-3 md:gap-5 px-2">
                     <template x-for="(photo, index) in paginatedPhotos" :key="photo.id">
-                        <div class="group relative aspect-[4/3] bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
+                        <div class="group relative mb-3 md:mb-5 break-inside-avoid rounded-2xl overflow-hidden cursor-pointer bg-slate-100 dark:bg-slate-800 shadow-md hover:shadow-2xl transition-shadow duration-300"
                              @click="openSlideshow(index)">
-                            <img :src="getPhotoUrl(photo.image_path)"
-                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img :src="getPhotoUrl(photo.image_path)" loading="lazy"
+                                 class="w-full h-auto block transition-transform duration-700 group-hover:scale-110">
 
-                            <!-- Overlay Hover (PERBAIKAN 1: Drop Shadow pada Teks) -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 md:p-6">
+                            <!-- Overlay Hover -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 md:p-5">
                                 <div class="w-full">
-                                    <div class="h-0.5 w-8 bg-blue-500 mb-2 shadow-sm"></div>
-                                    <!-- Tambahan drop-shadow-md agar jelas di light mode -->
+                                    <div class="h-0.5 w-8 bg-blue-400 mb-2 shadow-sm"></div>
                                     <p class="text-white text-xs md:text-sm font-bold line-clamp-2 leading-relaxed drop-shadow-md" x-text="photo.caption || 'Tanpa caption'"></p>
                                     <p class="text-slate-200 text-[8px] md:text-[10px] uppercase tracking-wider mt-1 drop-shadow-sm" x-text="formatDate(photo.event_date)"></p>
                                 </div>
@@ -304,7 +285,6 @@
 
                 albumSearch: '',
                 selectedCategoryId: 'all',
-                categoryDropdownOpen: false,
                 photoSearch: '',
 
                 currentCatPage: 1,
@@ -505,4 +485,16 @@
             }
         }
     </script>
+
+    @push('head-styles')
+        <style>
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    @endpush
 </x-app-layout>
