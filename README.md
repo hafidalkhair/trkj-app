@@ -38,8 +38,16 @@ Sistem manajemen web berbasis Laravel 11 untuk komunitas atau organisasi, dileng
    ```bash
    git clone https://github.com/username/trkj-app.git
    cd trkj-app
-    composer install
-    npm install && npm run dev
-    cp .env.example .env
-    php artisan key:generate
-    php artisan serve
+   composer install
+   npm install && npm run build
+   cp .env.example .env
+   php artisan key:generate
+   php artisan migrate
+   php artisan storage:link
+   php artisan serve
+   ```
+
+   > ⚠️ **Penting:** jangan lewatkan `php artisan storage:link`. Tanpa perintah ini,
+   > folder `public/storage` tidak akan tersambung ke `storage/app/public`, sehingga
+   > semua foto yang di-upload lewat panel admin (Kategori, Foto, Anggota) akan
+   > menghasilkan error 404 saat ditampilkan di situs.

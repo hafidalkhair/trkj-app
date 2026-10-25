@@ -18,9 +18,9 @@
             <!-- Logo Box -->
             <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl transition-all duration-500 shadow-lg transform group-hover:rotate-12"
                  :class="{
-                    'bg-teal-600 text-white scale-90': scrolled,
-                    'bg-teal-600 text-white': !scrolled && !isHome,
-                    'bg-white text-teal-600': !scrolled && isHome
+                    'bg-blue-600 text-white scale-90': scrolled,
+                    'bg-blue-600 text-white': !scrolled && !isHome,
+                    'bg-white text-blue-600': !scrolled && isHome
                  }">
                 C
             </div>
@@ -32,7 +32,7 @@
                         'text-slate-900 dark:text-white': scrolled || !isHome,
                         'text-white': !scrolled && isHome
                       }">
-                    Copium<span :class="{ 'text-teal-600': scrolled || !isHome, 'text-teal-300': !scrolled && isHome }">.</span>
+                    Copium<span :class="{ 'text-blue-600': scrolled || !isHome, 'text-blue-300': !scrolled && isHome }">.</span>
                 </span>
                 <!-- Subtext hilang saat scroll agar header lebih ramping -->
                 <span class="text-[10px] font-medium uppercase tracking-[0.2em] transition-all duration-300 origin-left"
@@ -65,7 +65,6 @@
             <ul class="flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0 font-medium tracking-wide">
                 @foreach([
                     ['route' => 'home', 'label' => 'Home'],
-                    ['route' => 'about', 'label' => 'About'],
                     ['route' => 'gallery', 'label' => 'Gallery'],
                     ['route' => 'structure', 'label' => 'Structure'],
                     ['route' => 'contact', 'label' => 'Contact']
@@ -74,7 +73,7 @@
                     <a href="{{ route($item['route']) }}"
                        class="relative block py-2 px-1 transition-all duration-300 group text-sm uppercase font-bold tracking-wider hover:-translate-y-0.5"
                        :class="{
-                            'text-slate-600 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400': scrolled || !isHome,
+                            'text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400': scrolled || !isHome,
                             'text-white/80 hover:text-white': !scrolled && isHome
                        }">
                         {{ $item['label'] }}
@@ -82,8 +81,8 @@
                         <!-- Dot Indicator Animation -->
                         <span class="absolute left-1/2 -translate-x-1/2 -bottom-1 w-1 h-1 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
                               :class="{
-                                'bg-teal-600 w-1.5 h-1.5 opacity-100': {{ request()->routeIs($item['route']) ? 'true' : 'false' }},
-                                'bg-teal-600': scrolled || !isHome,
+                                'bg-blue-600 w-1.5 h-1.5 opacity-100': {{ request()->routeIs($item['route']) ? 'true' : 'false' }},
+                                'bg-blue-600': scrolled || !isHome,
                                 'bg-white': !scrolled && isHome
                               }"></span>
                     </a>
@@ -108,18 +107,17 @@
             <ul class="flex flex-col p-2 font-medium space-y-1">
                 @foreach([
                     ['route' => 'home', 'label' => 'Home'],
-                    ['route' => 'about', 'label' => 'About'],
                     ['route' => 'gallery', 'label' => 'Gallery'],
                     ['route' => 'structure', 'label' => 'Structure'],
                     ['route' => 'contact', 'label' => 'Contact']
                 ] as $item)
                 <li>
                     <a href="{{ route($item['route']) }}"
-                       class="flex items-center justify-between px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-wider transition-all duration-200 active:scale-95 group {{ request()->routeIs($item['route']) ? 'bg-teal-50 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800' }}">
+                       class="flex items-center justify-between px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-wider transition-all duration-200 active:scale-95 group {{ request()->routeIs($item['route']) ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800' }}">
                         {{ $item['label'] }}
 
                         @if(request()->routeIs($item['route']))
-                            <span class="w-2 h-2 rounded-full bg-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.5)]"></span>
+                            <span class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></span>
                         @else
                             <svg class="w-4 h-4 text-slate-300 opacity-0 group-hover:opacity-100 transition-all transform -translate-x-2 group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         @endif
