@@ -3,7 +3,7 @@
 
     @php
         $toMemberJs = function ($member) {
-            return array_merge($member->only([
+            return array_merge(\Illuminate\Support\Arr::only($member->toArray(), [
                 'id', 'full_name', 'nim', 'position', 'study_program',
                 'favorite_quote', 'status', 'hobbies', 'social_media_links',
             ]), [
@@ -54,7 +54,7 @@
                 <div class="flex justify-center mb-16 relative z-10">
                     @foreach($leaders as $leader)
                         @if($leader->position === 'komisaris')
-                            <div class="relative group" x-data="{ show: false }" x-intersect.once="show = true"
+                            <div x-data="{ show: false }" x-intersect.once="show = true"
                                  :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
                                  class="relative group transition-all duration-700">
                                 <div class="relative bg-white dark:bg-slate-800 p-7 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 w-72 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-teal-900/10 hover:border-teal-500 dark:hover:border-teal-500 cursor-pointer"
@@ -94,7 +94,7 @@
                         <div class="flex flex-col items-center gap-6">
                             @foreach($leaders as $leader)
                                 @if($leader->position === $pos)
-                                    <div class="relative group" x-data="{ show: false }" x-intersect.once="show = true"
+                                    <div x-data="{ show: false }" x-intersect.once="show = true"
                                          :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
                                          class="relative group transition-all duration-700">
                                         <div class="absolute left-1/2 -top-8 w-px h-8 bg-slate-300 dark:bg-slate-700 md:hidden"></div>
@@ -192,8 +192,7 @@
 
         <!-- MEMBER DETAIL MODAL (single, Alpine-driven) -->
         <template x-if="selectedMember">
-            <div class="fixed inset-0 z-[100]" @click.self="closeMember()"
-                 x-show="selectedMember" x-transition.opacity>
+            <div class="fixed inset-0 z-[100]" @click.self="closeMember()" x-transition.opacity>
                 <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
 
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700"
